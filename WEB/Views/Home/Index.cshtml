@@ -1,0 +1,156 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="cards-ticker">
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Cotação">Ação</span>
+            </div>
+        </div>
+        <div class="_card-body">
+            <div>
+                <span>PETR4</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Cotação">Cotação</span>
+            </div>
+        </div>
+        <div class="_card-body">
+            <div>
+                <span id="cotacao"></span>
+                <input type="hidden" id="impCotacao" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="DY">DY</span>
+            </div>
+        </div>
+        <div class="_card-body">
+            <div>
+                <span id="dy"></span>
+                <input type="hidden" id="impDY" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Rendimento">Rendimento</span>
+            </div>
+        </div>
+        <div class="_card-body">
+            <div>
+                <span id="rendimento"></span>
+                <input type="hidden" id="impRendimento" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Rendimento / Real">Rendimento / Real</span>
+            </div>
+        </div>
+        <div class="_card-body">
+            <div>
+                <span id="rendReal"></span>
+                <input type="hidden" id="impRendReal" value="" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<input type="hidden" id="my-data" value="@ViewData["Dados"]" />
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    var myData = document.getElementById("my-data").value;
+    var found = $('#cards-ticker', myData);
+
+    // var cotacao = $('.value', found);
+    // $("#cotacao").html(cotacao[0]);
+    // $("#impCotacao").val($(".value").text().replace("R$ ", ""));
+
+    // var dy = $('._card-body', $('.dy', found));
+    // $("#dy").html(dy[0]);
+    // $("#impDY").val($('span', dy[0]).text());
+
+    // var rend = $('#table-dividends-history', myData).find("td").eq(3).html().replace("\n", "")
+    // $("#rendimento").html(rend);
+    // $("#impRendimento").val(rend);
+
+    // var val1 = parseFloat($("#impCotacao").val().replace(",", "."));
+    // var val2 = parseFloat(rend.replace(",", "."));
+
+
+    // $("#rendReal").html((val2 / val1).toFixed(8).replace(".", ","));
+    // $("#impRendReal").val((val2 / val1).toFixed(8));
+
+
+    // $('#Ticker-tickers', myData).find("td").eq(3).html().replace("\n", "")
+
+</script>
+
+<style>
+    ._card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,.161);
+        display: flex;
+        flex-direction: column;
+    }
+
+        ._card ._card-header {
+            background: #293038;
+            border-radius: 10px 10px 0 0;
+            color: #d3b583;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        ._card ._card-body {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+        }
+
+    .cards-ticker {
+        --spacing: 0 18px;
+        --column-count: 5;
+        grid-gap: var(--spacing);
+        display: flex;
+        display: grid;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(var(--column-count),1fr);
+        margin-bottom: 30px;
+    }
+
+    ._card ._card-body span {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        outline: 0;
+        padding: 0;
+    }
+</style>
