@@ -10,22 +10,11 @@
                 <span title="Cotação">Ação</span>
             </div>
         </div>
-        <div class="_card-body">
-            <div>
-                <span>PETR4</span>
-            </div>
-        </div>
     </div>
     <div class="_card">
         <div class="_card-header">
             <div>
                 <span title="Cotação">Cotação</span>
-            </div>
-        </div>
-        <div class="_card-body">
-            <div>
-                <span id="cotacao"></span>
-                <input type="hidden" id="impCotacao" value="" />
             </div>
         </div>
     </div>
@@ -35,47 +24,242 @@
                 <span title="DY">DY</span>
             </div>
         </div>
-        <div class="_card-body">
+    </div>
+    <div class="_card">
+        <div class="_card-header">
             <div>
-                <span id="dy"></span>
-                <input type="hidden" id="impDY" value="" />
+                <span title="Cotas">Cotas</span>
             </div>
         </div>
     </div>
     <div class="_card">
         <div class="_card-header">
             <div>
-                <span title="Rendimento">Rendimento</span>
-            </div>
-        </div>
-        <div class="_card-body">
-            <div>
-                <span id="rendimento"></span>
-                <input type="hidden" id="impRendimento" value="" />
+                <span title="Saldo">Saldo</span>
             </div>
         </div>
     </div>
     <div class="_card">
         <div class="_card-header">
             <div>
-                <span title="Rendimento / Real">Rendimento / Real</span>
+                <span title="Dividendo">Dividendo</span>
             </div>
         </div>
-        <div class="_card-body">
+    </div>
+    <div class="_card">
+        <div class="_card-header">
             <div>
-                <span id="rendReal"></span>
-                <input type="hidden" id="impRendReal" value="" />
+                <span title="Divid / Real">Divid / Real</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Prov Mensal">Prov Mensal</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Prov Anual">Prov Anual</span>
             </div>
         </div>
     </div>
 </section>
 
-<input type="hidden" id="my-data" value="@ViewData["Dados"]" />
+<section class="cards-ticker2">
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Total">Total</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalCotacao">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalDY"></span>%
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalCotas">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalSaldo">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalDividendos">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalDivReal">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalProvMensal">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalProvAnual">R$ </span>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
-    var myData = document.getElementById("my-data").value;
-    var found = $('#cards-ticker', myData);
+
+    $.ajax({
+        url: "home/CarregaDados",
+        method: "GET", // First change type to method here
+        dataType: 'json',
+        success: function (data) {
+            var totalCotacao = 0;
+            var totalDY = 0;
+            var totalCotas = 0;
+            var totalSaldo = 0;
+            var totalProvMensal = 0;
+            var totalProvAnual = 0;
+
+            $.each(data.ticker.data, function (index, element) {
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    $('.name', element.ticker).text() +
+                    '</span></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    element.current_price +
+                    '</span><input type="hidden" id="impCotacao' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.current_price +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    parseFloat(element.dy).toFixed(2) +
+                    '%</span><input type="hidden" id="impDY' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.dy +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.quantity +
+                    '</span><input type="hidden" id="impCotas' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.quantity +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    parseFloat(element.equity_total).toFixed(2) +
+                    '</span><input type="hidden" id="impSaldo' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.equity_total +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    0 +
+                    '</span><input type="hidden" id="impDividendo' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    0 +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    0 +
+                    '</span><input type="hidden" id="impDividendoReal' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    0 +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    (parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12).toFixed(2) +
+                    '</span><input type="hidden" id="impProventos' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    0 +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    (parseFloat(element.dy) * parseFloat(element.equity_total) / 100).toFixed(2) +
+                    '</span><input type="hidden" id="impProventosAnual' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    0 +
+                    '" /></div></div></div>'
+                );
+
+                totalCotacao += element.current_price;
+                totalDY += parseFloat(element.dy);
+                totalCotas += element.quantity;
+                totalSaldo += element.equity_total;
+                totalProvMensal += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
+                totalProvAnual += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
+            });
+
+            $("#totalCotacao").append(totalCotacao);
+            $("#totalDY").append((parseFloat(totalDY) / data.ticker.total).toFixed(2));
+            $("#totalCotas").html(totalCotas);
+            $("#totalSaldo").append(totalSaldo);
+            $("#totalProvMensal").append(parseFloat(totalProvMensal).toFixed(2));
+            $("#totalProvAnual").append(parseFloat(totalProvAnual).toFixed(2));
+        },
+        error: function (error) {
+            alert("error" + error);
+        }
+    });
+
+    // var myData = document.getElementById("my-data").value;
+    // var found = $('#cards-ticker', myData);
 
     // var cotacao = $('.value', found);
     // $("#cotacao").html(cotacao[0]);
@@ -102,17 +286,44 @@
 </script>
 
 <style>
+    .cards-ticker {
+        --spacing: 0 1px;
+        --column-count: 9;
+        grid-gap: var(--spacing);
+        display: flex;
+        display: grid;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(var(--column-count),1fr);
+        /* margin-bottom: 30px; */
+    }
+
+    .cards-ticker2 {
+        --spacing: 0 1px;
+        --column-count: 9;
+        grid-gap: var(--spacing);
+        display: flex;
+        display: grid;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(var(--column-count),1fr);
+        margin-bottom: 30px;
+    }
+
+    ._card ._card-body span {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
     ._card {
         background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,.161);
+        /* border-radius: 10px; */
+        box-shadow: 0 0 5px rgba(0,0,0,.161);
         display: flex;
         flex-direction: column;
     }
 
         ._card ._card-header {
             background: #293038;
-            border-radius: 10px 10px 0 0;
+            /* border-radius: 10px 10px 0 0; */
             color: #d3b583;
             font-size: 14px;
             font-weight: 800;
@@ -127,25 +338,9 @@
             flex-direction: column;
             height: 100%;
             justify-content: center;
-            padding: 15px;
+            padding: 5px;
             position: relative;
         }
-
-    .cards-ticker {
-        --spacing: 0 18px;
-        --column-count: 5;
-        grid-gap: var(--spacing);
-        display: flex;
-        display: grid;
-        flex-wrap: wrap;
-        grid-template-columns: repeat(var(--column-count),1fr);
-        margin-bottom: 30px;
-    }
-
-    ._card ._card-body span {
-        font-size: 22px;
-        font-weight: 700;
-    }
 
     * {
         box-sizing: border-box;

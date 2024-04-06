@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR.Protocol;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -66,11 +68,23 @@ namespace WEB.Controllers
 
             //} https://investidor10.com.br/carteiras/resumo/779708/
 
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult CarregaDados()
+        {
+            ResumoDTO resumoDTO = new ResumoDTO();
+
             var baseAddress = new Uri("https://investidor10.com.br");
             using (var handler = new HttpClientHandler { UseCookies = false })
             using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
             {
-                var message = new HttpRequestMessage(HttpMethod.Get, "/carteiras/resumo/779708/");
+                var message = new HttpRequestMessage(HttpMethod.Get, "/api/carteiras/datatable/ativos/779708/Ticker?draw=1&columns%5B0%5D%5Bdata%5D=ticker&columns%5B0%5D%5Bname%5D=ticker&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=quantity&columns%5B1%5D%5Bname%5D=quantity&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=avg_price&columns%5B2%5D%5Bname%5D=avg_price&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=current_price&columns%5B3%5D%5Bname%5D=current_price&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=graham&columns%5B4%5D%5Bname%5D=graham&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B5%5D%5Bdata%5D=bazin&columns%5B5%5D%5Bname%5D=bazin&columns%5B5%5D%5Bsearchable%5D=true&columns%5B5%5D%5Borderable%5D=true&columns%5B5%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B5%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B6%5D%5Bdata%5D=appreciation&columns%5B6%5D%5Bname%5D=appreciation&columns%5B6%5D%5Bsearchable%5D=true&columns%5B6%5D%5Borderable%5D=true&columns%5B6%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B6%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B7%5D%5Bdata%5D=equity_total&columns%5B7%5D%5Bname%5D=equity_total&columns%5B7%5D%5Bsearchable%5D=true&columns%5B7%5D%5Borderable%5D=true&columns%5B7%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B7%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B8%5D%5Bdata%5D=payout&columns%5B8%5D%5Bname%5D=payout&columns%5B8%5D%5Bsearchable%5D=true&columns%5B8%5D%5Borderable%5D=true&columns%5B8%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B8%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B9%5D%5Bdata%5D=p_l&columns%5B9%5D%5Bname%5D=p_l&columns%5B9%5D%5Bsearchable%5D=true&columns%5B9%5D%5Borderable%5D=true&columns%5B9%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B9%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B10%5D%5Bdata%5D=p_vp&columns%5B10%5D%5Bname%5D=p_vp&columns%5B10%5D%5Bsearchable%5D=true&columns%5B10%5D%5Borderable%5D=true&columns%5B10%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B10%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B11%5D%5Bdata%5D=dy&columns%5B11%5D%5Bname%5D=dy&columns%5B11%5D%5Bsearchable%5D=true&columns%5B11%5D%5Borderable%5D=true&columns%5B11%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B11%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B12%5D%5Bdata%5D=yoc&columns%5B12%5D%5Bname%5D=yoc&columns%5B12%5D%5Bsearchable%5D=true&columns%5B12%5D%5Borderable%5D=true&columns%5B12%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B12%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B13%5D%5Bdata%5D=roe&columns%5B13%5D%5Bname%5D=roe&columns%5B13%5D%5Bsearchable%5D=true&columns%5B13%5D%5Borderable%5D=true&columns%5B13%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B13%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B14%5D%5Bdata%5D=net_margin&columns%5B14%5D%5Bname%5D=net_margin&columns%5B14%5D%5Bsearchable%5D=true&columns%5B14%5D%5Borderable%5D=true&columns%5B14%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B14%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B15%5D%5Bdata%5D=gross_margin&columns%5B15%5D%5Bname%5D=gross_margin&columns%5B15%5D%5Bsearchable%5D=true&columns%5B15%5D%5Borderable%5D=true&columns%5B15%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B15%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B16%5D%5Bdata%5D=gnr&columns%5B16%5D%5Bname%5D=gnr&columns%5B16%5D%5Bsearchable%5D=true&columns%5B16%5D%5Borderable%5D=true&columns%5B16%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B16%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B17%5D%5Bdata%5D=gnp&columns%5B17%5D%5Bname%5D=gnp&columns%5B17%5D%5Bsearchable%5D=true&columns%5B17%5D%5Borderable%5D=true&columns%5B17%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B17%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B18%5D%5Bdata%5D=rating&columns%5B18%5D%5Bname%5D=rating&columns%5B18%5D%5Bsearchable%5D=true&columns%5B18%5D%5Borderable%5D=true&columns%5B18%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B18%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B19%5D%5Bdata%5D=percent_wallet&columns%5B19%5D%5Bname%5D=percent_wallet&columns%5B19%5D%5Bsearchable%5D=true&columns%5B19%5D%5Borderable%5D=true&columns%5B19%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B19%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B20%5D%5Bdata%5D=percent_ideal&columns%5B20%5D%5Bname%5D=percent_ideal&columns%5B20%5D%5Bsearchable%5D=true&columns%5B20%5D%5Borderable%5D=true&columns%5B20%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B20%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B21%5D%5Bdata%5D=percent_wallet_type&columns%5B21%5D%5Bname%5D=percent_wallet_type&columns%5B21%5D%5Bsearchable%5D=true&columns%5B21%5D%5Borderable%5D=true&columns%5B21%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B21%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B22%5D%5Bdata%5D=percent_ideal_type&columns%5B22%5D%5Bname%5D=percent_ideal_type&columns%5B22%5D%5Bsearchable%5D=true&columns%5B22%5D%5Borderable%5D=true&columns%5B22%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B22%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B23%5D%5Bdata%5D=buy&columns%5B23%5D%5Bname%5D=buy&columns%5B23%5D%5Bsearchable%5D=true&columns%5B23%5D%5Borderable%5D=true&columns%5B23%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B23%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B24%5D%5Bdata%5D=avg_rating&columns%5B24%5D%5Bname%5D=avg_rating&columns%5B24%5D%5Bsearchable%5D=true&columns%5B24%5D%5Borderable%5D=false&columns%5B24%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B24%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B25%5D%5Bdata%5D=25&columns%5B25%5D%5Bname%5D=&columns%5B25%5D%5Bsearchable%5D=true&columns%5B25%5D%5Borderable%5D=false&columns%5B25%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B25%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=7&order%5B0%5D%5Bdir%5D=desc&start=0&length=35&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1712351366464");
                 message.Headers.Add("Referer", "https://investidor10.com.br/carteiras/resumo/779708/");
                 message.Headers.Add("Sec-Ch-Ua", "\"Not A(Brand\";v=\"99\", \"Opera GX\";v=\"107\", \"Chromium\";v=\"121\"");
                 message.Headers.Add("Sec-Ch-Ua-Mobile", "?0");
@@ -81,14 +95,35 @@ namespace WEB.Controllers
                 var result = client.Send(message);
                 result.EnsureSuccessStatusCode();
                 var jsonResponse = result.Content.ReadAsStringAsync();
-                ViewData["Dados"] = jsonResponse.Result;
-                return View();
+                resumoDTO.Ticker = JsonConvert.DeserializeObject<TickerDTO>(jsonResponse.Result);
             }
-        }
 
-        public IActionResult Privacy()
-        {
-            return View();
+            foreach (var item in resumoDTO.Ticker.data)
+            {
+                using (var handler = new HttpClientHandler { UseCookies = false })
+                using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
+                {
+                    int first = item.ticker.IndexOf("<div class='name'>") + "<div class='name'>".Length;
+                    int last = item.ticker.LastIndexOf("</div>");
+                    string str2 = item.ticker.Substring(first, last - first);
+
+                    var message = new HttpRequestMessage(HttpMethod.Get, "/acoes/" + str2);
+                    message.Headers.Add("Referer", "https://investidor10.com.br/carteiras/resumo/779708/");
+                    message.Headers.Add("Sec-Ch-Ua", "\"Not A(Brand\";v=\"99\", \"Opera GX\";v=\"107\", \"Chromium\";v=\"121\"");
+                    message.Headers.Add("Sec-Ch-Ua-Mobile", "?0");
+                    message.Headers.Add("Sec-Ch-Ua-Platform", "\"Windows\"");
+                    message.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0");
+                    message.Headers.Add("X-Csrf-Token", "s4D8X0AYgOi7N6W3PzO2QExfC5KhLye3rokmHkwy");
+                    message.Headers.Add("Cookie", "hash-ads_popup=eyJpdiI6IjZuaW1zOUZOL0g1N3lNVGNvN0hyOVE9PSIsInZhbHVlIjoiOCsvaWNaSjBwNDBLampGZ1dxK0V0SkV0Ny9RR2E5dnVsRXFjcENIc1h1OFhsczJkcHZ2VWd5K1RsMkx4WTVRYVlPdXRENk9Cd3VWRnNwUm5jdzBJVEg3c0NTTjVCR24rN0lwblF1NHUrMlE9IiwibWFjIjoiMDM5NzJiOGVjNmNhZjYwYWJhYmU0ZTM5ZWJkMTk0MWUxOTBkMzA4YzRkNmFkYmU4MmMzZDg1YWMyMDkxMDU4MyJ9; sib_cuid=80c8005e-943c-4cb2-bd16-519e73af0825; _fbp=fb.2.1711233333747.1351730154; _gcl_au=1.1.2067815489.1711233339; user_phone=1; _hjSessionUser_2058627=eyJpZCI6IjdmMThkYmFiLTM1MjAtNTM0NS04ODFkLWE1OTI1Njg5YWJiNSIsImNyZWF0ZWQiOjE3MTEyMzM0MjcyMDYsImV4aXN0aW5nIjp0cnVlfQ==; buy_and_hold=5; pro_ref_v2=eyJpdiI6Ii9waFAzRWpxOWNlWTFJWTU5TmVHQVE9PSIsInZhbHVlIjoiM2JxSnloTXpqbGhQK29wL0IyWUs1Y0E2dnkwVTRHSFlKblk1eUlrZ29kK3BJMkE2bXNITGJTZ0dqbjVQalNMY2ZTYWkrQW1QU2hBTTdwVTFGYTl5dlE9PSIsIm1hYyI6Ijk4ZDJmOWY3MWQ4NGNmMWJkNWQwMDc1MmQwY2M3YjQ3YzAxZDMzM2MyNGI4MmY4YzU4YWRiNzNlZmEyMWQxMjUifQ%3D%3D; zabUserId=1712268365114zabu0.04157096498288593; _gid=GA1.3.1634689258.1712268365; zpsfa_CrrM31V=1712268365502psf0.2403441597956102; g_state={\"i_l\":1,\"i_t\":1712355397082,\"i_p\":1712275611175}; zps-tgr-dts=sc%3D2-expAppOnNewSession%3D%5B%5D-pc%3D9-sesst%3D1712270620636; cookie_contador_whole-site=eyJpdiI6Im8wbnY5YjhVaHlsZWZTWkcyVUpKS1E9PSIsInZhbHVlIjoiOUM2NFVRcGVtOUI3TTRRWWJGaWU1NEJCQUpkWnlrWkQrVjh3aHFsb0E0SzdIQ1lqRk92dVZZY21jUEJ1U1FrK3RJVGxwd2ZSZ3VOOVQ2eG45OE1mSmc9PSIsIm1hYyI6Ijg3ZGQzMTgzNTA2NDEyNDg5MzFmYTFkYzgyMzY1YWNkMWMwZTllZDkyZjAzODhkNDVmZTQwYWIxYmQ5N2RiNjEifQ%3D%3D; cookie_contador_carteira=eyJpdiI6IkJBNDUwUlV0Y1hPR1dUZktEZUs5bEE9PSIsInZhbHVlIjoiQUo2cU1aeXI3RGExNkY1U3VISkdCMnBYRERYKzNJYzlMbk1kei9veCtlL3JRQm1CaDltVGNUREFTL1lZM2NDL1RXenptVk5FYXVNTlRBUnZxZVhpenc9PSIsIm1hYyI6ImQyNWQwNThmNjY2ZjFlYjJlMDY0MzlkNDQ3MjU3NWFkMzAzZGRlNDZmZWQ4NDNiMGNjM2ZlNDY0ZTQ2Yzg3YTEifQ%3D%3D; _ce.irv=new; cebs=1; _ce.clock_event=1; _ce.clock_data=2028%2C109.51.218.16%2C1%2C36489d387fc8bef5e6ceaf2293b7a987; _CEFT=Q%3D%3D%3D; ads_popup=1; _ga_267511960=deleted; __eoi=ID=eab5f89d9bb71f3d:T=1712365691:RT=1712365691:S=AA-AfjaHGCahprLHwUFjPPpgugDq; XSRF-TOKEN=eyJpdiI6InpVY2xSZktHMDNOUjV5RXJzOUV5SGc9PSIsInZhbHVlIjoiV3JDZFFUWkFNN3FLWnNyWU5yU0pNT1BVOThURHBuZlpQVUlTYjVkWEJ5eldpMTZwVkJXZlRpV1VhYXBiVW9SUlNvd1FpOHIwaWRUcEVjWXRENk1zelcwQVBXeUduTVFvM2UyRWtTaDIxRHlqbUU0Q1djUnpOTkl6NFFBWEZwTHciLCJtYWMiOiIyOTc2YTZjNWQ5MzdkYWY5NGM1ODk1MjIwNDQ0ZWZlZTkzYmQ2ZmU3ZjI0NTVlOGYyZmE5MjExYTI3OGU2MTdhIn0%3D; laravel_session=eyJpdiI6Ik9vSGNFcEhjTHZHT2FUWDMzS0NjZmc9PSIsInZhbHVlIjoicEpyc24zRFM0aXVETTArMnBzSUF2cHdydnU1U21iWjJXMlBqM1JRUWlaZGt1VmgxOEZJUG9SK1QxZ2g0OElyWitnZHlqdWlLWDRlaHF2YlAydEg1Q2ZwejZ1V2JHS3BBWjJUOXNMUUhCdmFCNlNHYTBLWk15c3M5U2tDZFhUazIiLCJtYWMiOiJkODAwMWExMTdjYTFlMjFlZmY0Mjk2NWViNWEyODg1ZGExZGIxNTIzZGEyMjMxMWQ1YmU5MDYwY2FmZDViNTc1In0%3D; _ga_267511960=GS1.1.1712365692.17.1.1712365693.0.0.0; sc_is_visitor_unique=rx12923067.1712365694.1F185533069B4F643CE90975D21C66FB.20.16.15.14.14.12.7.6.5; _ga_5EQ309XQDG=GS1.1.1712365692.17.1.1712365693.59.0.0; _ga=GA1.3.671755938.1711233332; cebsp_=21; _ce.s=v~1f11813628855f9aa98bf06f7c301b373ed37145~lcw~1712365883603~lva~1712307634540~vpv~0~v11.fhb~1712307634801~v11.lhb~1712365876234~gtrk.la~lunefm58~v11.cs~442075~v11.s~bb9a1ba0-f3a0-11ee-837c-87708ce90349~v11.sla~1712365883603~v11.send~1712365889582~lcw~1712365889583");
+                    var result = client.Send(message);
+                    //result.EnsureSuccessStatusCode();
+                    var jsonResponse = result.Content.ReadAsStringAsync();
+
+                    item.Dividendos = jsonResponse.Result;
+                }
+            }
+
+            return Ok(resumoDTO);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
