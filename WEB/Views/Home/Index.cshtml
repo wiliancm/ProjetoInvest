@@ -56,14 +56,21 @@
     <div class="_card">
         <div class="_card-header">
             <div>
-                <span title="Prov Mensal">Prov Mensal</span>
+                <span title="Prov Mensal">PV Men Real</span>
             </div>
         </div>
     </div>
     <div class="_card">
         <div class="_card-header">
             <div>
-                <span title="Prov Anual">Prov Anual</span>
+                <span title="Prov Mensal">PV Men Esp</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Prov Anual">PV Anual</span>
             </div>
         </div>
     </div>
@@ -122,7 +129,14 @@
     <div class="_card">
         <div class="_card-header">
             <div>
-                <span id="totalProvMensal">R$ </span>
+                <span id="totalProvMensalReal">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalProvMensalEsp">R$ </span>
             </div>
         </div>
     </div>
@@ -200,17 +214,17 @@
 
                 $('.cards-ticker').append(
                     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                    0 +
+                    $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
                     '</span><input type="hidden" id="impDividendo' +
                     $('.name', element.ticker).text() +
                     '" value="' +
-                    0 +
+                    $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
                     '" /></div></div></div>'
                 );
 
                 $('.cards-ticker').append(
                     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                    0 +
+                    (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) / parseFloat(element.current_price)).toFixed(8) +
                     '</span><input type="hidden" id="impDividendoReal' +
                     $('.name', element.ticker).text() +
                     '" value="' +
@@ -220,8 +234,18 @@
 
                 $('.cards-ticker').append(
                     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) * element.quantity).toFixed(2) +
+                    '</span><input type="hidden" id="impProventosReal' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    0 +
+                    '" /></div></div></div>'
+                );
+
+                $('.cards-ticker').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
                     (parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12).toFixed(2) +
-                    '</span><input type="hidden" id="impProventos' +
+                    '</span><input type="hidden" id="impProventosEsp' +
                     $('.name', element.ticker).text() +
                     '" value="' +
                     0 +
@@ -246,11 +270,11 @@
                 totalProvAnual += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
             });
 
-            $("#totalCotacao").append(totalCotacao);
+            $("#totalCotacao").append((parseFloat(totalCotacao) / data.ticker.total).toFixed(2));
             $("#totalDY").append((parseFloat(totalDY) / data.ticker.total).toFixed(2));
             $("#totalCotas").html(totalCotas);
-            $("#totalSaldo").append(totalSaldo);
-            $("#totalProvMensal").append(parseFloat(totalProvMensal).toFixed(2));
+            $("#totalSaldo").append(parseFloat(totalSaldo).toFixed(2));
+            $("#totalProvMensalEsp").append(parseFloat(totalProvMensal).toFixed(2));
             $("#totalProvAnual").append(parseFloat(totalProvAnual).toFixed(2));
         },
         error: function (error) {
@@ -288,7 +312,7 @@
 <style>
     .cards-ticker {
         --spacing: 0 1px;
-        --column-count: 9;
+        --column-count: 10;
         grid-gap: var(--spacing);
         display: flex;
         display: grid;
@@ -299,7 +323,7 @@
 
     .cards-ticker2 {
         --spacing: 0 1px;
-        --column-count: 9;
+        --column-count: 10;
         grid-gap: var(--spacing);
         display: flex;
         display: grid;
