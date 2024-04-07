@@ -5,8 +5,11 @@
         public ResumoDTO()
         {
             Ticker = new TickerDTO();
+            Fii = new FundoImobiliarioDTO();
         }
 
-        public TickerDTO Ticker { get; set; }        
+        public TickerDTO Ticker { get; set; }
+        public FundoImobiliarioDTO Fii { get; set; }
+        public string Resumo { get; set; }
     }
 }

@@ -3,7 +3,8 @@
     ViewData["Title"] = "Home Page";
 }
 
-<section class="cards-ticker">
+<!-- AÇÕES -->
+<section class="cards-ticker topAcoes">
     <div class="_card">
         <div class="_card-header">
             <div>
@@ -53,9 +54,16 @@
             </div>
         </div>
     </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="">&nbsp;</span>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section class="cards-ticker2">
+<section class="cards-ticker botAcoes">
     <div class="_card">
         <div class="_card-header">
             <div>
@@ -87,6 +95,7 @@
     <div class="_card">
         <div class="_card-header">
             <div>
+                <img id="imgVariacao" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src="">
                 <span id="totalVariacao"></span>%
             </div>
         </div>
@@ -105,72 +114,236 @@
             </div>
         </div>
     </div>
+    <div class="_card">
+        <div class="_card-header">
+            <a href="#"><span title="">&nbsp;</span></a>
+        </div>
+    </div>
 
-   @*  
-    
+    @*
+
     <div class="_card">
-        <div class="_card-header">
-            <div>
-                <span id="totalDividendos">R$ </span>
-            </div>
-        </div>
+    <div class="_card-header">
+    <div>
+    <span id="totalDividendos">R$ </span>
+    </div>
+    </div>
     </div>
     <div class="_card">
-        <div class="_card-header">
-            <div>
-                <span id="totalDivReal">R$ </span>
-            </div>
-        </div>
+    <div class="_card-header">
+    <div>
+    <span id="totalDivReal">R$ </span>
+    </div>
+    </div>
     </div>
     <div class="_card">
-        <div class="_card-header">
-            <div>
-                <span id="totalProvMensalReal">R$ </span>
-            </div>
-        </div>
+    <div class="_card-header">
+    <div>
+    <span id="totalProvMensalReal">R$ </span>
+    </div>
+    </div>
     </div>
     <div class="_card">
-        <div class="_card-header">
-            <div>
-                <span id="totalProvMensalEsp">R$ </span>
-            </div>
-        </div>
+    <div class="_card-header">
+    <div>
+    <span id="totalProvMensalEsp">R$ </span>
+    </div>
+    </div>
     </div>
     <div class="_card">
-        <div class="_card-header">
-            <div>
-                <span id="totalProvAnual">R$ </span>
-            </div>
-        </div>
+    <div class="_card-header">
+    <div>
+    <span id="totalProvAnual">R$ </span>
+    </div>
+    </div>
     </div> *@
 </section>
+<!-- FIM AÇÕES -->
+<!-- FII -->
+<section class="cards-ticker topFii" style="margin-top: 20px;">
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="FII">FII</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Cotas">Cotas</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="VlMedio">VL Medio</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="VL Atual">VL Atual</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Variação">Variação</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Saldo">Saldo</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="DY">DY</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cards-ticker botFii">
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="Total">Total</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalCotasFii">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalVlMedioFii">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalCotacaoFii">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <img id="imgVariacaoFii" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src="">
+                <span id="totalVariacaoFii"></span>%
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalSaldoFii">R$ </span>
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span id="totalDYFii"></span>%
+            </div>
+        </div>
+    </div>
+    <div class="_card">
+        <div class="_card-header">
+            <div>
+                <span title="">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
+    @*
+
+    <div class="_card">
+    <div class="_card-header">
+    <div>
+    <span id="totalDividendos">R$ </span>
+    </div>
+    </div>
+    </div>
+    <div class="_card">
+    <div class="_card-header">
+    <div>
+    <span id="totalDivReal">R$ </span>
+    </div>
+    </div>
+    </div>
+    <div class="_card">
+    <div class="_card-header">
+    <div>
+    <span id="totalProvMensalReal">R$ </span>
+    </div>
+    </div>
+    </div>
+    <div class="_card">
+    <div class="_card-header">
+    <div>
+    <span id="totalProvMensalEsp">R$ </span>
+    </div>
+    </div>
+    </div>
+    <div class="_card">
+    <div class="_card-header">
+    <div>
+    <span id="totalProvAnual">R$ </span>
+    </div>
+    </div>
+    </div> *@
+</section>
+<!-- FIM FII -->
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 
     $.ajax({
         url: "home/CarregaDados",
-        method: "GET", // First change type to method here
+        method: "GET",
         dataType: 'json',
         success: function (data) {
-            var totalCotacao = 0;
-            var totalDY = 0;
-            var totalCotas = 0;
-            var totalSaldo = 0;
-            var totalProvMensal = 0;
-            var totalProvAnual = 0;
-            var totalVlMedio = 0;
-            var totalVariacao = 0;
+            var totalCotacao = totalCotacaoFii = 0;
+            var totalDY = totalDYFii = 0;
+            var totalCotas = totalCotasFii = 0;
+            var totalSaldo = totalSaldoFii = 0;
+            var totalProvMensal = totalProvMensalFii = 0;
+            var totalProvAnual = totalProvAnualFii = 0;
+            var totalVlMedio = totalVlMedioFii = 0;
+            var totalVariacao = totalVariacaoFii = 0;
 
             $.each(data.ticker.data, function (index, element) {
 
-                $('.cards-ticker').append(
+                $('.topAcoes').append(
                     '<div class="_card"><div class="_card-body"><div><span>' +
                     $('.name', element.ticker).text() +
                     '</span></div></div></div>'
                 );
 
-                $('.cards-ticker').append(
+                $('.topAcoes').append(
                     '<div class="_card"><div class="_card-body"><div><span>' +
                     element.quantity +
                     '</span><input type="hidden" id="impCotas' +
@@ -180,7 +353,7 @@
                     '" /></div></div></div>'
                 );
 
-                $('.cards-ticker').append(
+                $('.topAcoes').append(
                     '<div class="_card"><div class="_card-body"><div><span>R$ ' +
                     parseFloat(element.avg_price).toFixed(2) +
                     '</span><input type="hidden" id="impVlMedio' +
@@ -190,7 +363,7 @@
                     '" /></div></div></div>'
                 );
 
-                $('.cards-ticker').append(
+                $('.topAcoes').append(
                     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
                     parseFloat(element.current_price).toFixed(2) +
                     '</span><input type="hidden" id="impVlAtual' +
@@ -200,7 +373,7 @@
                     '" /></div></div></div>'
                 );
 
-                $('.cards-ticker').append(
+                $('.topAcoes').append(
                     '<div class="_card"><div class="_card-body"><div>' +
                     '<img id="imgVariacao' +
                     $('.name', element.ticker).text() +
@@ -220,7 +393,7 @@
                     $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
                 }
 
-                $('.cards-ticker').append(
+                $('.topAcoes').append(
                     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
                     parseFloat(element.equity_total).toFixed(2) +
                     '</span><input type="hidden" id="impSaldo' +
@@ -230,7 +403,7 @@
                     '" /></div></div></div>'
                 );
 
-                $('.cards-ticker').append(
+                $('.topAcoes').append(
                     '<div class="_card"><div class="_card-body"><div><span>' +
                     parseFloat(element.dy).toFixed(2) +
                     '%</span><input type="hidden" id="impDY' +
@@ -240,55 +413,13 @@
                     '" /></div></div></div>'
                 );
 
-                // $('.cards-ticker').append(
-                //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                //     $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
-                //     '</span><input type="hidden" id="impDividendo' +
-                //     $('.name', element.ticker).text() +
-                //     '" value="' +
-                //     $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
-                //     '" /></div></div></div>'
-                // );
-
-                // $('.cards-ticker').append(
-                //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                //     (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) / parseFloat(element.current_price)).toFixed(8) +
-                //     '</span><input type="hidden" id="impDividendoReal' +
-                //     $('.name', element.ticker).text() +
-                //     '" value="' +
-                //     0 +
-                //     '" /></div></div></div>'
-                // );
-
-                // $('.cards-ticker').append(
-                //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                //     (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) * element.quantity).toFixed(2) +
-                //     '</span><input type="hidden" id="impProventosReal' +
-                //     $('.name', element.ticker).text() +
-                //     '" value="' +
-                //     0 +
-                //     '" /></div></div></div>'
-                // );
-
-                // $('.cards-ticker').append(
-                //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                //     (parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12).toFixed(2) +
-                //     '</span><input type="hidden" id="impProventosEsp' +
-                //     $('.name', element.ticker).text() +
-                //     '" value="' +
-                //     0 +
-                //     '" /></div></div></div>'
-                // );
-
-                // $('.cards-ticker').append(
-                //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                //     (parseFloat(element.dy) * parseFloat(element.equity_total) / 100).toFixed(2) +
-                //     '</span><input type="hidden" id="impProventosAnual' +
-                //     $('.name', element.ticker).text() +
-                //     '" value="' +
-                //     0 +
-                //     '" /></div></div></div>'
-                // );
+                $('.topAcoes').append(
+                    '<div class="_card">' +
+                    '<div class="_card-body">' +
+                    '        <a href="#"><span title="">Resumo</span></a>' +
+                    '    </div>' +
+                    '</div>'
+                );
 
                 totalCotacao += element.current_price;
                 totalDY += parseFloat(element.dy);
@@ -300,15 +431,127 @@
                 totalVariacao = parseFloat(element.appreciation) + parseFloat(totalVariacao);
             });
 
+            //inicio
+            $.each(data.fii.data, function (index, element) {
+
+                $('.topFii').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    $('.name', element.ticker).text() +
+                    '</span></div></div></div>'
+                );
+
+                $('.topFii').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.quantity +
+                    '</span><input type="hidden" id="impCotas' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.quantity +
+                    '" /></div></div></div>'
+                );
+
+                $('.topFii').append(
+                    '<div class="_card"><div class="_card-body"><div><span>R$ ' +
+                    parseFloat(element.avg_price).toFixed(2) +
+                    '</span><input type="hidden" id="impVlMedio' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.avg_price +
+                    '" /></div></div></div>'
+                );
+
+                $('.topFii').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    parseFloat(element.current_price).toFixed(2) +
+                    '</span><input type="hidden" id="impVlAtual' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.current_price +
+                    '" /></div></div></div>'
+                );
+
+                $('.topFii').append(
+                    '<div class="_card"><div class="_card-body"><div>' +
+                    '<img id="imgVariacao' +
+                    $('.name', element.ticker).text() +
+                    '" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src=""> <span>' +
+                    parseFloat(element.appreciation).toFixed(2) +
+                    '%</span><input type="hidden" id="impVariacao' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.appreciation +
+                    '" /></div></div></div>'
+                );
+
+                if (element.appreciation >= 0) {
+                    $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                }
+                else {
+                    $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                }
+
+                $('.topFii').append(
+                    '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                    parseFloat(element.equity_total).toFixed(2) +
+                    '</span><input type="hidden" id="impSaldo' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.equity_total +
+                    '" /></div></div></div>'
+                );
+
+                $('.topFii').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    parseFloat(element.dy).toFixed(2) +
+                    '%</span><input type="hidden" id="impDY' +
+                    $('.name', element.ticker).text() +
+                    '" value="' +
+                    element.dy +
+                    '" /></div></div></div>'
+                );
+
+                $('.topFii').append(
+                    '<div class="_card">' +
+                    '<div class="_card-body">' +
+                    '        <a href="#"><span title="">Resumo</span></a>' +
+                    '    </div>' +
+                    '</div>'
+                );
+
+                totalCotacaoFii += element.current_price;
+                totalDYFii += parseFloat(element.dy);
+                totalCotasFii += element.quantity;
+                totalSaldoFii += element.equity_total;
+                totalProvMensalFii += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
+                totalProvAnualFii += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
+                totalVlMedioFii += parseFloat(element.avg_price);
+                totalVariacaoFii = parseFloat(element.appreciation) + parseFloat(totalVariacaoFii);
+            });
+            //fim
+
             $("#totalCotacao").append((parseFloat(totalCotacao) / data.ticker.total).toFixed(2));
             $("#totalDY").append((parseFloat(totalDY) / data.ticker.total).toFixed(2));
             $("#totalCotas").html(totalCotas);
             $("#totalSaldo").append(parseFloat(totalSaldo).toFixed(2));
             $("#totalVlMedio").append((parseFloat(totalVlMedio) / data.ticker.total).toFixed(2));
-            $("#totalVariacao").append((parseFloat(totalVariacao) / data.ticker.total).toFixed(2));
-            
+            $("#totalVariacao").append((parseFloat(totalVariacao)).toFixed(2));
+
+            $("#totalCotacaoFii").append((parseFloat(totalCotacaoFii) / data.fii.total).toFixed(2));
+            $("#totalDYFii").append((parseFloat(totalDYFii) / data.fii.total).toFixed(2));
+            $("#totalCotasFii").html(totalCotasFii);
+            $("#totalSaldoFii").append(parseFloat(totalSaldoFii).toFixed(2));
+            $("#totalVlMedioFii").append((parseFloat(totalVlMedioFii) / data.fii.total).toFixed(2));
+            $("#totalVariacaoFii").append((parseFloat(totalVariacaoFii)).toFixed(2));
+
+            if (totalVariacao >= 0) {
+                $('#imgVariacaoFii').attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+            }
+            else {
+                $('#imgVariacaoFii').attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+            }
+
             $("#totalProvMensalEsp").append(parseFloat(totalProvMensal).toFixed(2));
-            $("#totalProvAnual").append(parseFloat(totalProvAnual).toFixed(2));            
+            $("#totalProvAnual").append(parseFloat(totalProvAnual).toFixed(2));
         },
         error: function (error) {
             alert("error" + error);
@@ -340,29 +583,68 @@
 
     // $('#Ticker-tickers', myData).find("td").eq(3).html().replace("\n", "")
 
+    // $('.cards-ticker').append(
+    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+    //     $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
+    //     '</span><input type="hidden" id="impDividendo' +
+    //     $('.name', element.ticker).text() +
+    //     '" value="' +
+    //     $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
+    //     '" /></div></div></div>'
+    // );
+
+    // $('.cards-ticker').append(
+    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+    //     (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) / parseFloat(element.current_price)).toFixed(8) +
+    //     '</span><input type="hidden" id="impDividendoReal' +
+    //     $('.name', element.ticker).text() +
+    //     '" value="' +
+    //     0 +
+    //     '" /></div></div></div>'
+    // );
+
+    // $('.cards-ticker').append(
+    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+    //     (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) * element.quantity).toFixed(2) +
+    //     '</span><input type="hidden" id="impProventosReal' +
+    //     $('.name', element.ticker).text() +
+    //     '" value="' +
+    //     0 +
+    //     '" /></div></div></div>'
+    // );
+
+    // $('.cards-ticker').append(
+    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+    //     (parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12).toFixed(2) +
+    //     '</span><input type="hidden" id="impProventosEsp' +
+    //     $('.name', element.ticker).text() +
+    //     '" value="' +
+    //     0 +
+    //     '" /></div></div></div>'
+    // );
+
+    // $('.cards-ticker').append(
+    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+    //     (parseFloat(element.dy) * parseFloat(element.equity_total) / 100).toFixed(2) +
+    //     '</span><input type="hidden" id="impProventosAnual' +
+    //     $('.name', element.ticker).text() +
+    //     '" value="' +
+    //     0 +
+    //     '" /></div></div></div>'
+    // );
+
 </script>
 
 <style>
     .cards-ticker {
         --spacing: 0 1px;
-        --column-count: 7;
+        --column-count: 8;
         grid-gap: var(--spacing);
         display: flex;
         display: grid;
         flex-wrap: wrap;
         grid-template-columns: repeat(var(--column-count),1fr);
         /* margin-bottom: 30px; */
-    }
-
-    .cards-ticker2 {
-        --spacing: 0 1px;
-        --column-count: 7;
-        grid-gap: var(--spacing);
-        display: flex;
-        display: grid;
-        flex-wrap: wrap;
-        grid-template-columns: repeat(var(--column-count),1fr);
-        margin-bottom: 30px;
     }
 
     ._card ._card-body span {
@@ -376,6 +658,7 @@
         box-shadow: 0 0 5px rgba(0,0,0,.161);
         display: flex;
         flex-direction: column;
+        min-width: 80px;
     }
 
         ._card ._card-header {
@@ -404,5 +687,10 @@
         margin: 0;
         outline: 0;
         padding: 0;
+    }
+
+    a {
+        color: #d3b583;
+        text-decoration: auto;
     }
 </style>

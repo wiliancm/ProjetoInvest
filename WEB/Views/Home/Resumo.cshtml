@@ -1,0 +1,9 @@
+﻿@model ResumoDTO
+
+@{
+    int first = Model.Resumo.IndexOf("<div class='name-ticker'>") + "<div class='name-ticker'>".Length;
+    int last = Model.Resumo.IndexOf("<h2 class=\"name-company\">");
+    string str2 = Model.Resumo.Substring(first, last - first);
+}
+
+<h2>@Model.Resumo</h2>
