@@ -14,6 +14,7 @@
         public TickerDTO Ticker { get; set; }
         public FundoImobiliarioDTO Fii { get; set; }
         public ProventosDTO Proventos { get; set; }
+        public ProventosDTO ProventosInfo { get; set; }
         public List<CarteiraDTO> Carteira { get; set; }
         public LancamentosDTO Lancamentos { get; set; }
         public string Resumo { get; set; }

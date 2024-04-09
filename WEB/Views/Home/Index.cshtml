@@ -413,6 +413,13 @@
             <div class="_card-proventos">
                 <div class="_card-proventos-header">
                     <div>
+                        <span title="CATEGORIA">CATEGORIA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="_card-proventos">
+                <div class="_card-proventos-header">
+                    <div>
                         <span title="ATIVO">ATIVO</span>
                     </div>
                 </div>
@@ -420,42 +427,42 @@
             <div class="_card-proventos">
                 <div class="_card-proventos-header">
                     <div>
-                        <span title="TIPO DE ORDEM">TP ORDEM</span>
+                        <span title="QTD">QTD</span>
                     </div>
                 </div>
             </div>
             <div class="_card-proventos">
                 <div class="_card-proventos-header">
                     <div>
-                        <span title="DATA DE NEGOCIAÇÃO">DT COMP</span>
+                        <span title="DATA COM">DATA COM</span>
                     </div>
                 </div>
             </div>
             <div class="_card-proventos">
                 <div class="_card-proventos-header">
                     <div>
-                        <span title="QUANTIDADE">QTD</span>
+                        <span title="DATA PAG">DATA PAG</span>
                     </div>
                 </div>
             </div>
             <div class="_card-proventos">
                 <div class="_card-proventos-header">
                     <div>
-                        <span title="PREÇO UNITÁRIO">VL UNIT</span>
+                        <span title="VL DIVIDENDO">VL DIVIDENDO</span>
                     </div>
                 </div>
             </div>
             <div class="_card-proventos">
                 <div class="_card-proventos-header">
                     <div>
-                        <span title="VALOR TOTAL">VL TOTAL</span>
+                        <span title="TOTAL">TOTAL</span>
                     </div>
                 </div>
             </div>
             <div class="_card-proventos">
                 <div class="_card-proventos-header">
                     <div>
-                        <span title="LUCRO">LUCRO</span>
+                        <span title="TOTAL LÍQ">TOTAL LÍQ</span>
                     </div>
                 </div>
             </div>
@@ -887,23 +894,17 @@
             //fim
 
             //inicio
-            $.each(data.lancamentos.data, function (index, element) {
+            $.each(data.proventosInfo.data, function (index, element) {
+
+                $('.topProventosInfs').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.category +
+                    '</span></div></div></div>'
+                );
 
                 $('.topProventosInfs').append(
                     '<div class="_card"><div class="_card-body"><div><span>' +
                     element.ticker +
-                    '</span></div></div></div>'
-                );
-
-                $('.topProventosInfs').append(
-                    '<div class="_card"><div class="_card-body"><div><span>' +
-                    element.type +
-                    '</span></div></div></div>'
-                );
-
-                $('.topProventosInfs').append(
-                    '<div class="_card"><div class="_card-body"><div><span>' +
-                    element.date +
                     '</span></div></div></div>'
                 );
 
@@ -915,7 +916,19 @@
 
                 $('.topProventosInfs').append(
                     '<div class="_card"><div class="_card-body"><div><span>' +
-                    element.price +
+                    element.date_with +
+                    '</span></div></div></div>'
+                );
+
+                $('.topProventosInfs').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.date_payment +
+                    '</span></div></div></div>'
+                );
+
+                $('.topProventosInfs').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.value +
                     '</span></div></div></div>'
                 );
 
@@ -925,21 +938,27 @@
                     '</span></div></div></div>'
                 );
 
-                var lucro = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price.replace("R$  ", ""))) * element.qty;
-                if (lucro > 0) {
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
-                        lucro.toFixed(2) +
-                        '</span></div></div></div>'
-                    );
-                }
-                else {
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
-                        lucro.toFixed(2) +
-                        '</span></div></div></div>'
-                    );
-                }
+                $('.topProventosInfs').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.net_total +
+                    '</span></div></div></div>'
+                );
+
+                // var lucro = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price.replace("R$  ", ""))) * element.qty;
+                // if (lucro > 0) {
+                //     $('.topProventosInfs').append(
+                //         '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
+                //         lucro.toFixed(2) +
+                //         '</span></div></div></div>'
+                //     );
+                // }
+                // else {
+                //     $('.topProventosInfs').append(
+                //         '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
+                //         lucro.toFixed(2) +
+                //         '</span></div></div></div>'
+                //     );
+                // }
             });
             //fim
 
@@ -1204,7 +1223,7 @@
 
     .cards-ticker-proventos-resumo {
         --spacing: 0 1px;
-        --column-count: 7;
+        --column-count: 8;
         grid-gap: var(--spacing);
         display: flex;
         display: grid;
@@ -1377,5 +1396,21 @@
                 border-bottom: 5px solid #a38c65;
                 color: #a38c65;
             }
+
+    .hidden {
+        display: none;
+    }
+
+    .topProventosInfs ._card ._card-body span .image {
+        align-items: center;
+        display: flex;
+    }
+
+        .topProventosInfs ._card ._card-body span .image img {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 28px;
+        }
 
 </style>
