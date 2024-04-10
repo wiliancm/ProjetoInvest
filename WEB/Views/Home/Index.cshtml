@@ -2,622 +2,781 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="box especial margin-top-30 return-investment ">
-    <header>
-        <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="ATIVOS"></span>
-        <h2>
-            Ações
-        </h2>
-        <div class="filters desktop">
-            <ul class="nav filters-large">
-                <li class="nav-item">
-                    Qtd: <span id="qtdAtivosAcoes"></span>
-                </li>
-                <li class="nav-item">
-                    Total: R$ <span id="vlTotalAtivosAcoes"></span>
-                </li>
-                <li class="nav-item">
-                    Variação: <span id="variacaoAtivosAcoes"></span>%
-                </li>
-                <li class="nav-item">
-                    Porc. Carteira: <span id="porcentagemAtivosAcoes"></span>%
-                </li>
-            </ul>
-        </div>
-    </header>
-    <div id="info_about" class="content">
-        <!-- AÇÕES -->
-        <section class="cards-ticker topAcoes">
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Cotação">Ação</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Cotas">Cotas</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="VlMedio">VL Medio</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="VL Atual">VL Atual</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Variação">Variação</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Saldo">Saldo</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="DY">DY</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="">&nbsp;</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="cards-ticker botAcoes">
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Total">Total</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalCotas">0</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalVlMedio">R$ </span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalCotacao">R$ </span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <img id="imgVariacao" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src="">
-                        <span id="totalVariacao"></span>%
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalSaldo">R$ </span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalDY"></span>%
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <a href="#"><span title="">&nbsp;</span></a>
-                </div>
-            </div>
-        </section>
-        <!-- FIM AÇÕES -->
-    </div>
-</div>
-<div class="box especial margin-top-30 return-investment ">
-    <header>
-        <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="ATIVOS"></span>
-        <h2>
-            FIIs
-        </h2>
-        <div class="filters desktop">
-            <ul class="nav filters-large">
-                <li class="nav-item">
-                    Qtd: <span id="qtdAtivosFiis"></span>
-                </li>
-                <li class="nav-item">
-                    Total: R$ <span id="vlTotalAtivosFiis"></span>
-                </li>
-                <li class="nav-item">
-                    Variação: <span id="variacaoAtivosFiis"></span>%
-                </li>
-                <li class="nav-item">
-                    Porc. Carteira: <span id="porcentagemAtivosFiis"></span>%
-                </li>
-            </ul>
-        </div>
-    </header>
-    <div id="info_about" class="content">
-        <!-- FII -->
-        <section class="cards-ticker topFii">
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="FII">FII</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Cotas">Cotas</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="VlMedio">VL Medio</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="VL Atual">VL Atual</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Variação">Variação</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Saldo">Saldo</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="DY">DY</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="">&nbsp;</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="cards-ticker botFii">
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="Total">Total</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalCotasFii">0</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalVlMedioFii">R$ </span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalCotacaoFii">R$ </span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <img id="imgVariacaoFii" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src="">
-                        <span id="totalVariacaoFii"></span>%
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalSaldoFii">R$ </span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span id="totalDYFii"></span>%
-                    </div>
-                </div>
-            </div>
-            <div class="_card">
-                <div class="_card-header">
-                    <div>
-                        <span title="">&nbsp;</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- FIM FII -->
-    </div>
-</div>
-<div class="box especial margin-top-30 return-investment ">
-    <header>
-        <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="PROVENTOS"></span>
-        <h2>
-            PROVENTOS
-        </h2>
-    </header>
-    <div id="info_about" class="content">
-        <!-- PROVENTOS -->
-        <section class="cards-ticker-proventos topProventos" style="margin-top: 20px;">
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="ANO">ANO</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="JAN">JAN</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="FEV">FEV</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="MAR">MAR</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="ABR">ABR</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="MAI">MAI</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="JUN">JUN</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="JUL">JUL</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="AGO">AGO</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="SET">SET</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="OUT">OUT</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="NOV">NOV</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="DEZ">DEZ</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="TOTAL">TOTAL</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="MEDIA">MEDIA</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- FIM PROVENTOS -->
-        <!-- PROVENTOS INFS -->
-        <section class="cards-ticker-proventos-resumo topProventosInfs" style="margin-top: 20px;">
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="CATEGORIA">CATEGORIA</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="ATIVO">ATIVO</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="QTD">QTD</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="DATA COM">DATA COM</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="DATA PAG">DATA PAG</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="VL DIVIDENDO">VL DIVIDENDO</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="TOTAL">TOTAL</span>
-                    </div>
-                </div>
-            </div>
-            <div class="_card-proventos">
-                <div class="_card-proventos-header">
-                    <div>
-                        <span title="TOTAL LÍQ">TOTAL LÍQ</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- FIM PROVENTOS INFS -->
-    </div>
-</div>
-<!-- RESUMO -->
-<section class="resumo" style="display: none;">
+<div id="inicio">
     <div class="box especial margin-top-30 return-investment ">
         <header>
-            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="RETORNO DO INVESTIMENTO"></span>
+            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="Início"></span>
             <h2>
-                RENTABILIDADE DE <span id="rentAtivo"></span>
+                início
             </h2>
         </header>
-        <div id="info_about" class="content">
-            <div class="cards-ticker-resumo">
-                <div class="_card-resumo">
-                    <div class="_card-header">
-                        <div>
-                            <span>Dividendos Mensais (Esperado)</span>
-                        </div>
-                    </div>
-                    <div class="_card-body">
-                        <div>
-                            <span class="value" id="divMensalEsperado">R$ </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-resumo">
-                    <div class="_card-header">
-                        <div>
-                            <span>Dividendos Anuais (Esperado)</span>
-                        </div>
-                    </div>
-                    <div class="_card-body">
-                        <div>
-                            <span class="value" id="divAnualEsperado">R$ </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-resumo">
-                    <div class="_card-header">
-                        <div>
-                            <span>Magic Number (Esperado)</span>
-                        </div>
-                    </div>
-                    <div class="_card-body">
-                        <div>
-                            <span class="value" id="magicNumber">0</span>
-                        </div>
-                    </div>
-                </div>
+        <div id="info_about" class="content" style="align-content: center; text-align: center;">
+            <div class="title">
+                Insira seu ID de Carteira
             </div>
-            <div class="cards-ticker-resumo">
-                <div class="_card-resumo">
-                    <div class="_card-header">
-                        <div>
-                            <span>Dividendos Mensais (Real)</span>
+            <br />
+            <input id="carteira" type="text" class="text-field" style="width: 300px" />
+            <p><span id="mensagemErro" style="color: red; display: none;">Favor informar um id de carteira.</span></p>
+            <button onclick="javascript:CarregaRender();" class="btn-default black">
+                Pesquisar
+            </button>
+            <br />
+        </div>
+    </div>
+</div>
+<div id="render" style="display: none;">
+    <!-- RESUMO -->
+    <section class="resumo" style="display: none;">
+        <div class="box especial margin-top-30 return-investment ">
+            <header>
+                <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="RENTABILIDADE"></span>
+                <h2>
+                    RENTABILIDADE DE <span id="rentAtivo"></span>
+                </h2>
+                <div class="filters desktop">
+                    <ul class="nav filters-large">
+                        <li class="nav-item">
+                            <a href="javascript:$('.resumo').toggle();"><span title=""> &nbsp;&nbsp; X &nbsp;&nbsp; </span></a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <div id="info_about" class="content">
+                <div class="cards-ticker-resumo">
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>Cotação Atual</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="cotacaoAtual">R$ </span>
+                            </div>
                         </div>
                     </div>
-                    <div class="_card-body">
-                        <div>
-                            <span class="value" id="divMensalReal">R$ </span>
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>DY Mensal</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="dyMensal">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>DY Anual</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="dyAnual">0%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="_card-resumo">
-                    <div class="_card-header">
-                        <div>
-                            <span>Dividendos Anuais (Real)</span>
+                <div class="cards-ticker-resumo">
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>Magic Number (Esperado)</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="magicNumber">0</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="_card-body">
-                        <div>
-                            <span class="value" id="divAnualReal">R$ </span>
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>Dividendos Mensais (Esperado)</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="divMensalEsperado">R$ </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>Dividendos Anuais (Esperado)</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="divAnualEsperado">R$ </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="_card-resumo">
-                    <div class="_card-header">
-                        <div>
-                            <span>Magic Number (Real)</span>
+                <div class="cards-ticker-resumo">
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>Magic Number (Real)</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="magicNumberReal">0</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="_card-body">
-                        <div>
-                            <span class="value" id="magicNumberReal">0</span>
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>Dividendos Mensais (Real)</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="divMensalReal">R$ </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_card-resumo">
+                        <div class="_card-header">
+                            <div>
+                                <span>Dividendos Anuais (Real)</span>
+                            </div>
+                        </div>
+                        <div class="_card-body">
+                            <div>
+                                <span class="value" id="divAnualReal">R$ </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- TABELA -->
-            <div class="no_datatable margin-top-80-mobile read-more indicator-history expanded">
-                <div class="datatable small">
-                    <span class="label-mobile">
-                        ARRASTE O QUADRO PARA VER MAIS DADOS
-                        <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right"></i> -->
-                    </span>
-                    <div class="scroll-h freeze-column">
-                        <table id="table-indicators-history" class="table table-balance">
-                            <tbody>
-                                <tr class="visible-odd"><th>&nbsp;</th><th class="year">Atual</th><th class="year">2023</th><th class="year">2022</th><th class="year">2021</th><th class="year">2020</th><th class="year">2019</th></tr>
-                                <tr class="visible-even">
-                                    <td class="indicator">P/L&nbsp; <a href="javascript:void(0)" class="indicator-history-graph" data-indicator="P/L"><svg class="svg-inline--fa fa-chart-area" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-area" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"></path></svg><!-- <i class="fas fa-chart-area"></i> --></a></td>
-                                    <td class="value">7,66</td>
+                <!-- TABELA -->
+                <div class="no_datatable margin-top-80-mobile read-more indicator-history expanded">
+                    <div class="datatable small">
+                        <span class="label-mobile">
+                            ARRASTE O QUADRO PARA VER MAIS DADOS
+                            <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right"></i> -->
+                        </span>
+                        <div class="scroll-h freeze-column">
+                            <table id="table-indicators-history" class="table table-balance">
+                                <tbody>
+                                    <tr class="visible-odd"><th>&nbsp;</th><th class="year">Atual</th><th class="year">2023</th><th class="year">2022</th><th class="year">2021</th><th class="year">2020</th><th class="year">2019</th></tr>
+                                    <tr class="visible-even">
+                                        <td class="indicator">P/L&nbsp; <a href="javascript:void(0)" class="indicator-history-graph" data-indicator="P/L"><svg class="svg-inline--fa fa-chart-area" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-area" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"></path></svg><!-- <i class="fas fa-chart-area"></i> --></a></td>
+                                        <td class="value">7,66</td>
 
-                                    <td class="value">7,95</td>
+                                        <td class="value">7,95</td>
 
-                                    <td class="value">6,17</td>
+                                        <td class="value">6,17</td>
 
-                                    <td class="value">6,02</td>
+                                        <td class="value">6,02</td>
 
-                                    <td class="value">12,42</td>
+                                        <td class="value">12,42</td>
 
-                                    <td class="value">10,10</td>
-                                </tr>
-                                <tr class="visible-odd">
-                                    <td class="indicator">P/RECEITA (PSR)&nbsp; <a href="javascript:void(0)" class="indicator-history-graph" data-indicator="P/RECEITA (PSR)"><svg class="svg-inline--fa fa-chart-area" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-area" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"></path></svg><!-- <i class="fas fa-chart-area"></i> --></a></td>
-                                    <td class="value">13,98</td>
+                                        <td class="value">10,10</td>
+                                    </tr>
+                                    <tr class="visible-odd">
+                                        <td class="indicator">P/RECEITA (PSR)&nbsp; <a href="javascript:void(0)" class="indicator-history-graph" data-indicator="P/RECEITA (PSR)"><svg class="svg-inline--fa fa-chart-area" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-area" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"></path></svg><!-- <i class="fas fa-chart-area"></i> --></a></td>
+                                        <td class="value">13,98</td>
 
-                                    <td class="value">14,51</td>
+                                        <td class="value">14,51</td>
 
-                                    <td class="value">9,95</td>
+                                        <td class="value">9,95</td>
 
-                                    <td class="value">9,00</td>
+                                        <td class="value">9,00</td>
 
-                                    <td class="value">14,90</td>
+                                        <td class="value">14,90</td>
 
-                                    <td class="value">20,80</td>
-                                </tr>
-                                <tr class="visible-even">
-                                    <td class="indicator">P/VP&nbsp; <a href="javascript:void(0)" class="indicator-history-graph" data-indicator="P/VP"><svg class="svg-inline--fa fa-chart-area" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-area" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"></path></svg><!-- <i class="fas fa-chart-area"></i> --></a></td>
-                                    <td class="value">1,24</td>
+                                        <td class="value">20,80</td>
+                                    </tr>
+                                    <tr class="visible-even">
+                                        <td class="indicator">P/VP&nbsp; <a href="javascript:void(0)" class="indicator-history-graph" data-indicator="P/VP"><svg class="svg-inline--fa fa-chart-area" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-area" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"></path></svg><!-- <i class="fas fa-chart-area"></i> --></a></td>
+                                        <td class="value">1,24</td>
 
-                                    <td class="value">1,29</td>
+                                        <td class="value">1,29</td>
 
-                                    <td class="value">1,16</td>
+                                        <td class="value">1,16</td>
 
-                                    <td class="value">1,12</td>
+                                        <td class="value">1,12</td>
 
-                                    <td class="value">1,53</td>
+                                        <td class="value">1,53</td>
 
-                                    <td class="value">1,89</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <td class="value">1,89</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <!-- FIM RESUMO -->
+    <div class="box especial margin-top-30 return-investment ">
+        <header>
+            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="AÇÕES"></span>
+            <h2>
+                Ações
+            </h2>
+            <div class="filters desktop">
+                <ul class="nav filters-large">
+                    <li class="nav-item">
+                        Qtd: <span id="qtdAtivosAcoes"></span>
+                    </li>
+                    <li class="nav-item">
+                        Total: R$ <span id="vlTotalAtivosAcoes"></span>
+                    </li>
+                    @* <li class="nav-item">
+                    Variação: <span id="variacaoAtivosAcoes"></span>%
+                    </li> *@
+                    <li class="nav-item">
+                        Porc. Carteira: <span id="porcentagemAtivosAcoes"></span>%
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="info_about" class="content">
+            <!-- AÇÕES -->
+            <section class="cards-ticker topAcoes">
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Cotação">Ação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Cotas">Cotas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="VlMedio">VL Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="VL Atual">VL Atual</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Variação">Variação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Saldo">Saldo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="DY">DY</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="">&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="cards-ticker botAcoes">
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Total">Total</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalCotas">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalVlMedio">R$ </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalCotacao">R$ </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <img id="imgVariacao" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src="">
+                            <span id="totalVariacao"></span>%
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalSaldo">R$ </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalDY"></span>%
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <a href="#"><span title="">&nbsp;</span></a>
+                    </div>
+                </div>
+            </section>
+            <!-- FIM AÇÕES -->
+        </div>
     </div>
-</section>
-<!-- FIM RESUMO -->
+    <div class="box especial margin-top-30 return-investment ">
+        <header>
+            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="FIIS"></span>
+            <h2>
+                FIIs
+            </h2>
+            <div class="filters desktop">
+                <ul class="nav filters-large">
+                    <li class="nav-item">
+                        Qtd: <span id="qtdAtivosFiis"></span>
+                    </li>
+                    <li class="nav-item">
+                        Total: R$ <span id="vlTotalAtivosFiis"></span>
+                    </li>
+                    @* <li class="nav-item">
+                    Variação: <span id="variacaoAtivosFiis"></span>%
+                    </li> *@
+                    <li class="nav-item">
+                        Porc. Carteira: <span id="porcentagemAtivosFiis"></span>%
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="info_about" class="content">
+            <!-- FII -->
+            <section class="cards-ticker topFii">
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="FII">FII</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Cotas">Cotas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="VlMedio">VL Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="VL Atual">VL Atual</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Variação">Variação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Saldo">Saldo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="DY">DY</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="">&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="cards-ticker botFii">
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="Total">Total</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalCotasFii">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalVlMedioFii">R$ </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalCotacaoFii">R$ </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <img id="imgVariacaoFii" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src="">
+                            <span id="totalVariacaoFii"></span>%
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalSaldoFii">R$ </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span id="totalDYFii"></span>%
+                        </div>
+                    </div>
+                </div>
+                <div class="_card">
+                    <div class="_card-header">
+                        <div>
+                            <span title="">&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- FIM FII -->
+        </div>
+    </div>
+    <div class="box especial margin-top-30 return-investment ">
+        <header>
+            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="LANÇAMENTOS"></span>
+            <h2>
+                LANÇAMENTOS
+            </h2>
+            <div class="filters desktop">
+                <ul class="nav filters-large">
+                    <li class="nav-item">
+                        Rendimentos: <span id="totalRendimentos">R$ </span>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="info_about" class="content">
+            <!-- PROVENTOS INFS -->
+            <section class="cards-ticker-lancamentos topLancamentos">
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="TIPO">TIPO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="ATIVO">ATIVO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="ORDEM">ORDEM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="DATA COM">DATA COM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="QTD">QTD</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="VL UND">VL UND</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="VL UND REN">VL UND REN</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="TOTAL">TOTAL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="TOTAL REND">TOTAL REND</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- FIM PROVENTOS INFS -->
+        </div>
+    </div>
+    <div class="box especial margin-top-30 return-investment ">
+        <header>
+            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="PROVENTOS"></span>
+            <h2>
+                PROVENTOS
+            </h2>
+            <div class="filters desktop">
+                <ul class="nav filters-large">
+                    <li class="nav-item">
+                        Total: <span id="totalProventos">R$ </span>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="info_about" class="content">
+            <!-- PROVENTOS -->
+            <section class="cards-ticker-proventos topProventos" style="margin-top: 20px;">
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="ANO">ANO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="JAN">JAN</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="FEV">FEV</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="MAR">MAR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="ABR">ABR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="MAI">MAI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="JUN">JUN</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="JUL">JUL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="AGO">AGO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="SET">SET</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="OUT">OUT</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="NOV">NOV</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="DEZ">DEZ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="TOTAL">TOTAL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="MEDIA">MEDIA</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- FIM PROVENTOS -->
+            <!-- PROVENTOS INFS -->
+            <section class="cards-ticker-proventos-resumo topProventosInfs" style="margin-top: 20px;">
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="CATEGORIA">CATEGORIA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="ATIVO">ATIVO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="QTD">QTD</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="DATA COM">DATA COM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="DATA PAG">DATA PAG</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="VL DIVIDENDO">VL DIVIDENDO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="TOTAL">TOTAL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="_card-proventos">
+                    <div class="_card-proventos-header">
+                        <div>
+                            <span title="TOTAL LÍQ">TOTAL LÍQ</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- FIM PROVENTOS INFS -->
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -634,7 +793,7 @@
             var totalProvMensal = totalProvMensalFii = 0;
             var totalProvAnual = totalProvAnualFii = 0;
             var totalVlMedio = totalVlMedioFii = 0;
-            var totalVariacao = totalVariacaoFii = 0;
+            var totalVariacao = totalVariacaoFii = totalRendimentos = totalProventos = 0;
 
             //inicio
             $.each(data.ticker.data, function (index, element) {
@@ -873,6 +1032,8 @@
                     parseFloat(element.avg).toFixed(2) +
                     '</span></div></div></div>'
                 );
+
+                totalProventos += element.total;
             });
             //fim
 
@@ -962,6 +1123,87 @@
             });
             //fim
 
+            //inicio
+            $.each(data.lancamentos.data, function (index, element) {
+
+                $('.topLancamentos').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.type_investment +
+                    '</span></div></div></div>'
+                );
+
+                $('.topLancamentos').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.ticker +
+                    '</span></div></div></div>'
+                );
+
+                $('.topLancamentos').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.type +
+                    '</span></div></div></div>'
+                );
+
+                $('.topLancamentos').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.date +
+                    '</span></div></div></div>'
+                );
+
+                $('.topLancamentos').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.qty +
+                    '</span></div></div></div>'
+                );
+
+                $('.topLancamentos').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.price +
+                    '</span></div></div></div>'
+                );
+
+                var lucroUnid = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", "")));
+                if (lucroUnid > 0) {
+                    $('.topLancamentos').append(
+                        '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
+                        lucroUnid.toFixed(2) +
+                        '</span></div></div></div>'
+                    );
+                }
+                else {
+                    $('.topLancamentos').append(
+                        '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
+                        lucroUnid.toFixed(2) +
+                        '</span></div></div></div>'
+                    );
+                }
+
+                $('.topLancamentos').append(
+                    '<div class="_card"><div class="_card-body"><div><span>' +
+                    element.total +
+                    '</span></div></div></div>'
+                );
+
+                var lucro = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", ""))) * element.qty;
+                if (lucro > 0) {
+                    $('.topLancamentos').append(
+                        '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
+                        lucro.toFixed(2) +
+                        '</span></div></div></div>'
+                    );
+                }
+                else {
+                    $('.topLancamentos').append(
+                        '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
+                        lucro.toFixed(2) +
+                        '</span></div></div></div>'
+                    );
+                }
+
+                totalRendimentos += parseFloat(lucro);
+            });
+            //fim
+
             $("#totalCotacao").append((parseFloat(totalCotacao) / data.ticker.total).toFixed(2));
             $("#totalDY").append((parseFloat(totalDY) / data.ticker.total).toFixed(2));
             $("#totalCotas").html(totalCotas);
@@ -992,6 +1234,15 @@
 
             $("#totalProvMensalEsp").append(parseFloat(totalProvMensal).toFixed(2));
             $("#totalProvAnual").append(parseFloat(totalProvAnual).toFixed(2));
+            $("#totalRendimentos").append(parseFloat(totalRendimentos).toFixed(2));
+            $("#totalProventos").append((parseFloat(totalProventos)).toFixed(2));
+
+            if (totalRendimentos > 0) {
+                $('#totalRendimentos').attr("style", "color: green;");
+            }
+            else {
+                $('#totalRendimentos').attr("style", "color: red;");
+            }
         },
         error: function (error) {
             alert("error" + error);
@@ -1003,87 +1254,43 @@
             $(".resumo").toggle();
         }
         else {
-            $(".resumo").attr("style", "display: normal;")
+            $(".resumo").attr("style", "display: normal;");
         }
 
         $("#rentAtivo").text(ativo);
+
+        var divMensalEsperado = divAnualEsperado = magicNumber = dy = cota = saldo = 0;
+
+        cota = $("#impVlAtual" + ativo).val();
+        dy = $("#impDY" + ativo).val() / 100;
+        saldo = $("#impSaldo" + ativo).val();
+
+        divMensalEsperado = (saldo * dy / 12).toFixed(2);
+        divAnualEsperado = (saldo * dy).toFixed(2);
+        magicNumber = (cota / (dy / 12) / cota).toFixed(0);
+
+        $("#cotacaoAtual").text("R$ " + cota);
+        $("#dyMensal").text((dy / 12 * 100) + "%");
+        $("#dyAnual").text((dy * 100) + "%");
+
+        $("#divMensalEsperado").text("R$ " + divMensalEsperado);
+        $("#divAnualEsperado").text("R$ " + divAnualEsperado);
+        $("#magicNumber").text(magicNumber);
+
+        var scrollPos = $(".resumo").offset().top;
+        $(window).scrollTop(scrollPos - 20);
     }
 
-    // var myData = document.getElementById("my-data").value;
-    // var found = $('#cards-ticker', myData);
+    function CarregaRender() {
 
-    // var cotacao = $('.value', found);
-    // $("#cotacao").html(cotacao[0]);
-    // $("#impCotacao").val($(".value").text().replace("R$ ", ""));
-
-    // var dy = $('._card-body', $('.dy', found));
-    // $("#dy").html(dy[0]);
-    // $("#impDY").val($('span', dy[0]).text());
-
-    // var rend = $('#table-dividends-history', myData).find("td").eq(3).html().replace("\n", "")
-    // $("#rendimento").html(rend);
-    // $("#impRendimento").val(rend);
-
-    // var val1 = parseFloat($("#impCotacao").val().replace(",", "."));
-    // var val2 = parseFloat(rend.replace(",", "."));
-
-
-    // $("#rendReal").html((val2 / val1).toFixed(8).replace(".", ","));
-    // $("#impRendReal").val((val2 / val1).toFixed(8));
-
-
-    // $('#Ticker-tickers', myData).find("td").eq(3).html().replace("\n", "")
-
-    // $('.cards-ticker').append(
-    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-    //     $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
-    //     '</span><input type="hidden" id="impDividendo' +
-    //     $('.name', element.ticker).text() +
-    //     '" value="' +
-    //     $('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".") +
-    //     '" /></div></div></div>'
-    // );
-
-    // $('.cards-ticker').append(
-    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-    //     (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) / parseFloat(element.current_price)).toFixed(8) +
-    //     '</span><input type="hidden" id="impDividendoReal' +
-    //     $('.name', element.ticker).text() +
-    //     '" value="' +
-    //     0 +
-    //     '" /></div></div></div>'
-    // );
-
-    // $('.cards-ticker').append(
-    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-    //     (parseFloat($('#table-dividends-history', element.dividendos).find("td").eq(3).html().replace("\n", "").replace(",", ".")) * element.quantity).toFixed(2) +
-    //     '</span><input type="hidden" id="impProventosReal' +
-    //     $('.name', element.ticker).text() +
-    //     '" value="' +
-    //     0 +
-    //     '" /></div></div></div>'
-    // );
-
-    // $('.cards-ticker').append(
-    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-    //     (parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12).toFixed(2) +
-    //     '</span><input type="hidden" id="impProventosEsp' +
-    //     $('.name', element.ticker).text() +
-    //     '" value="' +
-    //     0 +
-    //     '" /></div></div></div>'
-    // );
-
-    // $('.cards-ticker').append(
-    //     '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-    //     (parseFloat(element.dy) * parseFloat(element.equity_total) / 100).toFixed(2) +
-    //     '</span><input type="hidden" id="impProventosAnual' +
-    //     $('.name', element.ticker).text() +
-    //     '" value="' +
-    //     0 +
-    //     '" /></div></div></div>'
-    // );
-
+        if ($("#carteira").val() === null || $("#carteira").val() === '') {
+            $("#mensagemErro").attr("style", "display: normal;");
+        }
+        else {
+            $("#render").attr("style", "display: normal;");
+            $("#inicio").attr("style", "display: none;");
+        }
+    }
 </script>
 
 <style>
@@ -1224,6 +1431,18 @@
     .cards-ticker-proventos-resumo {
         --spacing: 0 1px;
         --column-count: 8;
+        grid-gap: var(--spacing);
+        display: flex;
+        display: grid;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(var(--column-count),1fr);
+        Overflow-x: scroll;
+        /* margin-bottom: 30px; */
+    }
+
+    .cards-ticker-lancamentos {
+        --spacing: 0 1px;
+        --column-count: 9;
         grid-gap: var(--spacing);
         display: flex;
         display: grid;
@@ -1412,5 +1631,82 @@
             margin-right: 10px;
             width: 28px;
         }
+
+    ._card-body .value {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .text-field {
+        background: #e5e5e5;
+        border: none;
+        border-radius: 20px;
+        color: #666;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    #my-wallets a {
+        color: #000;
+    }
+
+    .btn-default.transparent {
+        background: transparent;
+    }
+
+    .btn-default {
+        cursor: pointer;
+    }
+
+    .btn-default {
+        align-content: center;
+        align-items: center;
+        background-color: #ccc;
+        border: 1px solid #ccc;
+        border-radius: 100px;
+        color: #293038;
+        /* display: flex; */
+        font: normal normal 800 14px/19px Nunito;
+        height: 36px;
+        justify-content: center;
+        letter-spacing: 0;
+        padding: 0 15px;
+        text-align: center;
+        transition: .5s;
+        transition-timing-function: ease;
+    }
+
+    svg:not(:host).svg-inline--fa, svg:not(:root).svg-inline--fa {
+        overflow: visible;
+        box-sizing: content-box;
+    }
+
+    .btn-default i, .btn-default img, .btn-default svg {
+        margin-left: 10px;
+    }
+
+    .no-margin {
+        margin: 0;
+        padding: 0;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+
+    .svg-inline--fa {
+        display: var(--fa-display, inline-block);
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
+    }
+
+    .btn-default.black {
+        background: #000;
+        border-color: #000;
+        color: #d3b583;
+        font-weight: 700;
+        S
+    }
 
 </style>
