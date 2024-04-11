@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using Newtonsoft.Json;
@@ -15,8 +16,9 @@ namespace WEB.Controllers
     public class HomeController : Controller
     {
         Uri baseAddress = new Uri("https://investidor10.com.br");
-        public static ResumoDTO resumoDTO = new ResumoDTO();
-        public static string _idCarteira = string.Empty;
+        public ResumoDTO resumoDTO = new ResumoDTO();
+        private const string SessionIdCarteira = "SessionIdCarteira";
+        private const string SessionCarteira = "SessionCarteira";
 
         public HomeController()
         {
@@ -24,6 +26,8 @@ namespace WEB.Controllers
 
         public IActionResult Index()
         {
+            resumoDTO = JsonConvert.DeserializeObject<ResumoDTO>(HttpContext.Session.GetString(SessionCarteira) ?? string.Empty) ?? new ResumoDTO();
+
             if (resumoDTO.Iniciado)
             {
                 return View(true);
@@ -36,6 +40,9 @@ namespace WEB.Controllers
 
         public IActionResult CarregaDados(string idCarteira)
         {
+            var _idCarteira = HttpContext.Session.GetString(SessionIdCarteira) ?? string.Empty;
+            resumoDTO = JsonConvert.DeserializeObject<ResumoDTO>(HttpContext.Session.GetString(SessionCarteira) ?? string.Empty) ?? new ResumoDTO();
+
             if (!resumoDTO.Iniciado || resumoDTO.DataAtualizado.AddMinutes(5) < DateTime.Now || _idCarteira != idCarteira)
             {
                 _idCarteira = string.IsNullOrEmpty(idCarteira) ? _idCarteira : idCarteira;
@@ -161,6 +168,9 @@ namespace WEB.Controllers
 
                 resumoDTO.DataAtualizado = DateTime.Now;
                 resumoDTO.Iniciado = true;
+
+                HttpContext.Session.SetString(SessionIdCarteira, _idCarteira);
+                HttpContext.Session.SetString(SessionCarteira, JsonConvert.SerializeObject(resumoDTO));
             }
 
             return Ok(resumoDTO);
