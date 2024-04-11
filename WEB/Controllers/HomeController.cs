@@ -101,7 +101,7 @@ namespace WEB.Controllers
                 using (var handler = new HttpClientHandler { UseCookies = false })
                 using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
                 {
-                    var message = new HttpRequestMessage(HttpMethod.Get, "\r\n/api/carteiras/proventos/" + _idCarteira + "/month/null/null/all");
+                    var message = new HttpRequestMessage(HttpMethod.Get, "/api/carteiras/proventos/" + _idCarteira + "/month/null/null/all");
                     message.Headers.Add("Referer", "https://investidor10.com.br/carteiras/resumo/" + _idCarteira + "/");
                     message.Headers.Add("Sec-Ch-Ua", "\"Not A(Brand\";v=\"99\", \"Opera GX\";v=\"107\", \"Chromium\";v=\"121\"");
                     message.Headers.Add("Sec-Ch-Ua-Mobile", "?0");
