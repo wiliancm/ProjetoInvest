@@ -1,7 +1,11 @@
-﻿@model string
+﻿@model bool
 @{
     ViewData["Title"] = "Home Page";
 }
+<div id="carregando" style="display: none;">
+    <img src="~/icons8-girador.gif" width="100px" />
+</div>
+
 <div id="inicio">
     <div class="box especial margin-top-30 return-investment" style="width: 450px;">
         <header>
@@ -15,7 +19,7 @@
                 Insira seu ID de Carteira
             </div>
             <br />
-            <input id="carteira" type="text" class="text-field" style="width: 300px; text-align: center;" value="779708" />
+            <input id="carteira" type="text" class="text-field" style="width: 300px; text-align: center;" />
             <p><span id="mensagemErro" style="color: red; display: none;">Favor informar um id de carteira.</span></p>
             <button onclick="javascript:CarregaRender();" class="btn-default black">
                 Pesquisar
@@ -781,466 +785,478 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 
-    function carregaCarteira() {
+    @if (Model)
+    {
+        <text>
+            carregaCarteira();
+            $("#carregando").attr("style", "display: normal;");
+        </text>
+    }
 
-        $.ajax({
-            url: "home/CarregaDados?idCarteira=" + $("#carteira").val(),
-            method: "GET",
-            dataType: 'json',
-            success: function (data) {
-                var totalCotacao = totalCotacaoFii = 0;
-                var totalDY = totalDYFii = 0;
-                var totalCotas = totalCotasFii = 0;
-                var totalSaldo = totalSaldoFii = 0;
-                var totalProvMensal = totalProvMensalFii = 0;
-                var totalProvAnual = totalProvAnualFii = 0;
-                var totalVlMedio = totalVlMedioFii = 0;
-                var totalVariacao = totalVariacaoFii = totalRendimentos = totalProventos = 0;
+        function carregaCarteira() {
 
-                //inicio
-                $.each(data.ticker.data, function (index, element) {
+            $("#carregando").attr("style", "display: normal;");
 
-                    $('.topAcoes').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        $('.name', element.ticker).text() +
-                        '</span></div></div></div>'
-                    );
+            $.ajax({
+                url: "home/CarregaDados?idCarteira=" + $("#carteira").val(),
+                method: "GET",
+                dataType: 'json',
+                success: function (data) {
+                    var totalCotacao = totalCotacaoFii = 0;
+                    var totalDY = totalDYFii = 0;
+                    var totalCotas = totalCotasFii = 0;
+                    var totalSaldo = totalSaldoFii = 0;
+                    var totalProvMensal = totalProvMensalFii = 0;
+                    var totalProvAnual = totalProvAnualFii = 0;
+                    var totalVlMedio = totalVlMedioFii = 0;
+                    var totalVariacao = totalVariacaoFii = totalRendimentos = totalProventos = 0;
 
-                    $('.topAcoes').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.quantity +
-                        '</span><input type="hidden" id="impCotas' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.quantity +
-                        '" /></div></div></div>'
-                    );
+                    //inicio
+                    $.each(data.ticker.data, function (index, element) {
 
-                    $('.topAcoes').append(
-                        '<div class="_card"><div class="_card-body"><div><span>R$ ' +
-                        parseFloat(element.avg_price).toFixed(2) +
-                        '</span><input type="hidden" id="impVlMedio' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.avg_price +
-                        '" /></div></div></div>'
-                    );
+                        $('.topAcoes').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            $('.name', element.ticker).text() +
+                            '</span></div></div></div>'
+                        );
 
-                    $('.topAcoes').append(
-                        '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                        parseFloat(element.current_price).toFixed(2) +
-                        '</span><input type="hidden" id="impVlAtual' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.current_price +
-                        '" /></div></div></div>'
-                    );
+                        $('.topAcoes').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.quantity +
+                            '</span><input type="hidden" id="impCotas' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.quantity +
+                            '" /></div></div></div>'
+                        );
 
-                    $('.topAcoes').append(
-                        '<div class="_card"><div class="_card-body"><div>' +
-                        '<img id="imgVariacao' +
-                        $('.name', element.ticker).text() +
-                        '" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src=""> <span>' +
-                        parseFloat(element.appreciation).toFixed(2) +
-                        '%</span><input type="hidden" id="impVariacao' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.appreciation +
-                        '" /></div></div></div>'
-                    );
+                        $('.topAcoes').append(
+                            '<div class="_card"><div class="_card-body"><div><span>R$ ' +
+                            parseFloat(element.avg_price).toFixed(2) +
+                            '</span><input type="hidden" id="impVlMedio' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.avg_price +
+                            '" /></div></div></div>'
+                        );
 
-                    if (element.appreciation >= 0) {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
-                    }
-                    else {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
-                    }
+                        $('.topAcoes').append(
+                            '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                            parseFloat(element.current_price).toFixed(2) +
+                            '</span><input type="hidden" id="impVlAtual' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.current_price +
+                            '" /></div></div></div>'
+                        );
 
-                    $('.topAcoes').append(
-                        '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                        parseFloat(element.equity_total).toFixed(2) +
-                        '</span><input type="hidden" id="impSaldo' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.equity_total +
-                        '" /></div></div></div>'
-                    );
+                        $('.topAcoes').append(
+                            '<div class="_card"><div class="_card-body"><div>' +
+                            '<img id="imgVariacao' +
+                            $('.name', element.ticker).text() +
+                            '" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src=""> <span>' +
+                            parseFloat(element.appreciation).toFixed(2) +
+                            '%</span><input type="hidden" id="impVariacao' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.appreciation +
+                            '" /></div></div></div>'
+                        );
 
-                    $('.topAcoes').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        parseFloat(element.dy).toFixed(2) +
-                        '%</span><input type="hidden" id="impDY' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.dy +
-                        '" /></div></div></div>'
-                    );
+                        if (element.appreciation >= 0) {
+                            $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                        }
+                        else {
+                            $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                        }
 
-                    $('.topAcoes').append(
-                        '<div class="_card">' +
-                        '<div class="_card-body">' +
-                        '<a href="javascript:CarregaResumo(\'' +
-                        $('.name', element.ticker).text() +
-                        '\', \'acao\');"><span title="">Resumo</span></a>' +
-                        '</div>' +
-                        '</div>'
-                    );
+                        $('.topAcoes').append(
+                            '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                            parseFloat(element.equity_total).toFixed(2) +
+                            '</span><input type="hidden" id="impSaldo' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.equity_total +
+                            '" /></div></div></div>'
+                        );
 
-                    totalCotacao += element.current_price;
-                    totalDY += parseFloat(element.dy);
-                    totalCotas += element.quantity;
-                    totalSaldo += element.equity_total;
-                    totalProvMensal += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
-                    totalProvAnual += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
-                    totalVlMedio += parseFloat(element.avg_price);
-                    totalVariacao = parseFloat(element.appreciation) + parseFloat(totalVariacao);
-                });
-                //fim
+                        $('.topAcoes').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            parseFloat(element.dy).toFixed(2) +
+                            '%</span><input type="hidden" id="impDY' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.dy +
+                            '" /></div></div></div>'
+                        );
 
-                //inicio
-                $.each(data.fii.data, function (index, element) {
+                        $('.topAcoes').append(
+                            '<div class="_card">' +
+                            '<div class="_card-body">' +
+                            '<a href="javascript:CarregaResumo(\'' +
+                            $('.name', element.ticker).text() +
+                            '\', \'acao\');"><span title="">Resumo</span></a>' +
+                            '</div>' +
+                            '</div>'
+                        );
 
-                    $('.topFii').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        $('.name', element.ticker).text() +
-                        '</span></div></div></div>'
-                    );
+                        totalCotacao += element.current_price;
+                        totalDY += parseFloat(element.dy);
+                        totalCotas += element.quantity;
+                        totalSaldo += element.equity_total;
+                        totalProvMensal += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
+                        totalProvAnual += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
+                        totalVlMedio += parseFloat(element.avg_price);
+                        totalVariacao = parseFloat(element.appreciation) + parseFloat(totalVariacao);
+                    });
+                    //fim
 
-                    $('.topFii').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.quantity +
-                        '</span><input type="hidden" id="impCotas' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.quantity +
-                        '" /></div></div></div>'
-                    );
+                    //inicio
+                    $.each(data.fii.data, function (index, element) {
 
-                    $('.topFii').append(
-                        '<div class="_card"><div class="_card-body"><div><span>R$ ' +
-                        parseFloat(element.avg_price).toFixed(2) +
-                        '</span><input type="hidden" id="impVlMedio' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.avg_price +
-                        '" /></div></div></div>'
-                    );
+                        $('.topFii').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            $('.name', element.ticker).text() +
+                            '</span></div></div></div>'
+                        );
 
-                    $('.topFii').append(
-                        '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                        parseFloat(element.current_price).toFixed(2) +
-                        '</span><input type="hidden" id="impVlAtual' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.current_price +
-                        '" /></div></div></div>'
-                    );
+                        $('.topFii').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.quantity +
+                            '</span><input type="hidden" id="impCotas' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.quantity +
+                            '" /></div></div></div>'
+                        );
 
-                    $('.topFii').append(
-                        '<div class="_card"><div class="_card-body"><div>' +
-                        '<img id="imgVariacao' +
-                        $('.name', element.ticker).text() +
-                        '" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src=""> <span>' +
-                        parseFloat(element.appreciation).toFixed(2) +
-                        '%</span><input type="hidden" id="impVariacao' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.appreciation +
-                        '" /></div></div></div>'
-                    );
+                        $('.topFii').append(
+                            '<div class="_card"><div class="_card-body"><div><span>R$ ' +
+                            parseFloat(element.avg_price).toFixed(2) +
+                            '</span><input type="hidden" id="impVlMedio' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.avg_price +
+                            '" /></div></div></div>'
+                        );
 
-                    if (element.appreciation >= 0) {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
-                    }
-                    else {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
-                    }
+                        $('.topFii').append(
+                            '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                            parseFloat(element.current_price).toFixed(2) +
+                            '</span><input type="hidden" id="impVlAtual' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.current_price +
+                            '" /></div></div></div>'
+                        );
 
-                    $('.topFii').append(
-                        '<div class="_card"><div class="_card-body"><div><span> R$ ' +
-                        parseFloat(element.equity_total).toFixed(2) +
-                        '</span><input type="hidden" id="impSaldo' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.equity_total +
-                        '" /></div></div></div>'
-                    );
+                        $('.topFii').append(
+                            '<div class="_card"><div class="_card-body"><div>' +
+                            '<img id="imgVariacao' +
+                            $('.name', element.ticker).text() +
+                            '" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src=""> <span>' +
+                            parseFloat(element.appreciation).toFixed(2) +
+                            '%</span><input type="hidden" id="impVariacao' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.appreciation +
+                            '" /></div></div></div>'
+                        );
 
-                    $('.topFii').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        parseFloat(element.dy).toFixed(2) +
-                        '%</span><input type="hidden" id="impDY' +
-                        $('.name', element.ticker).text() +
-                        '" value="' +
-                        element.dy +
-                        '" /></div></div></div>'
-                    );
+                        if (element.appreciation >= 0) {
+                            $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                        }
+                        else {
+                            $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                        }
 
-                    $('.topFii').append(
-                        '<div class="_card">' +
-                        '<div class="_card-body">' +
-                        '<a href="javascript:CarregaResumo(\'' +
-                        $('.name', element.ticker).text() +
-                        '\', \'fii\');"><span title="">Resumo</span></a>' +
-                        '</div>' +
-                        '</div>'
-                    );
+                        $('.topFii').append(
+                            '<div class="_card"><div class="_card-body"><div><span> R$ ' +
+                            parseFloat(element.equity_total).toFixed(2) +
+                            '</span><input type="hidden" id="impSaldo' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.equity_total +
+                            '" /></div></div></div>'
+                        );
 
-                    totalCotacaoFii += element.current_price;
-                    totalDYFii += parseFloat(element.dy);
-                    totalCotasFii += element.quantity;
-                    totalSaldoFii += element.equity_total;
-                    totalProvMensalFii += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
-                    totalProvAnualFii += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
-                    totalVlMedioFii += parseFloat(element.avg_price);
-                    totalVariacaoFii = parseFloat(element.appreciation) + parseFloat(totalVariacaoFii);
-                });
-                //fim
+                        $('.topFii').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            parseFloat(element.dy).toFixed(2) +
+                            '%</span><input type="hidden" id="impDY' +
+                            $('.name', element.ticker).text() +
+                            '" value="' +
+                            element.dy +
+                            '" /></div></div></div>'
+                        );
 
-                //inicio
-                $.each($.parseJSON(data.resumo), function (index, element) {
+                        $('.topFii').append(
+                            '<div class="_card">' +
+                            '<div class="_card-body">' +
+                            '<a href="javascript:CarregaResumo(\'' +
+                            $('.name', element.ticker).text() +
+                            '\', \'fii\');"><span title="">Resumo</span></a>' +
+                            '</div>' +
+                            '</div>'
+                        );
 
-                    $('.topProventos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.year +
-                        '</span></div></div></div>'
-                    );
+                        totalCotacaoFii += element.current_price;
+                        totalDYFii += parseFloat(element.dy);
+                        totalCotasFii += element.quantity;
+                        totalSaldoFii += element.equity_total;
+                        totalProvMensalFii += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
+                        totalProvAnualFii += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
+                        totalVlMedioFii += parseFloat(element.avg_price);
+                        totalVariacaoFii = parseFloat(element.appreciation) + parseFloat(totalVariacaoFii);
+                    });
+                    //fim
 
-                    $.each(element.months, function (index2, element2) {
-                        if (element2.amount > 0) {
-                            $('.topProventos').append(
-                                '<div class="_card"><div class="_card-body"><div><span style="color: green;">' +
-                                parseFloat(element2.amount).toFixed(2) +
+                    //inicio
+                    $.each($.parseJSON(data.resumo), function (index, element) {
+
+                        $('.topProventos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.year +
+                            '</span></div></div></div>'
+                        );
+
+                        $.each(element.months, function (index2, element2) {
+                            if (element2.amount > 0) {
+                                $('.topProventos').append(
+                                    '<div class="_card"><div class="_card-body"><div><span style="color: green;">' +
+                                    parseFloat(element2.amount).toFixed(2) +
+                                    '</span></div></div></div>'
+                                );
+                            }
+                            else {
+                                $('.topProventos').append(
+                                    '<div class="_card"><div class="_card-body"><div><span style="color: red;">' +
+                                    parseFloat(element2.amount).toFixed(2) +
+                                    '</span></div></div></div>'
+                                );
+                            }
+                        });
+
+                        $('.topProventos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>R$ ' +
+                            parseFloat(element.total).toFixed(2) +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>R$ ' +
+                            parseFloat(element.avg).toFixed(2) +
+                            '</span></div></div></div>'
+                        );
+
+                        totalProventos += element.total;
+                    });
+                    //fim
+
+                    //inicio
+                    $.each(data.carteira, function (index, element) {
+
+                        if (element.type == "Ticker") {
+                            $('#qtdAtivosAcoes').html(data.ticker.total);
+                            $('#vlTotalAtivosAcoes').html(parseFloat(totalSaldo).toFixed(2));
+                            $('#porcentagemAtivosAcoes').html(parseFloat(element.percent).toFixed(2));
+                        }
+
+                        if (element.type == "Fii") {
+                            $('#qtdAtivosFiis').html(data.fii.total);
+                            $('#vlTotalAtivosFiis').html(parseFloat(totalSaldoFii).toFixed(2));
+                            $('#porcentagemAtivosFiis').html(parseFloat(element.percent).toFixed(2));
+                        }
+                    });
+                    //fim
+
+                    //inicio
+                    $.each(data.proventosInfo.data, function (index, element) {
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.category +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.ticker +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.qty +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.date_with +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.date_payment +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.value +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.total +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topProventosInfs').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.net_total +
+                            '</span></div></div></div>'
+                        );
+                    });
+                    //fim
+
+                    //inicio
+                    $.each(data.lancamentos.data, function (index, element) {
+
+                        $('.topLancamentos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.type_investment +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topLancamentos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.ticker +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topLancamentos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.type +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topLancamentos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.date +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topLancamentos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.qty +
+                            '</span></div></div></div>'
+                        );
+
+                        $('.topLancamentos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.price +
+                            '</span></div></div></div>'
+                        );
+
+                        var lucroUnid = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", "")));
+                        if (lucroUnid > 0) {
+                            $('.topLancamentos').append(
+                                '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
+                                lucroUnid.toFixed(2) +
                                 '</span></div></div></div>'
                             );
                         }
                         else {
-                            $('.topProventos').append(
-                                '<div class="_card"><div class="_card-body"><div><span style="color: red;">' +
-                                parseFloat(element2.amount).toFixed(2) +
+                            $('.topLancamentos').append(
+                                '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
+                                lucroUnid.toFixed(2) +
                                 '</span></div></div></div>'
                             );
                         }
+
+                        $('.topLancamentos').append(
+                            '<div class="_card"><div class="_card-body"><div><span>' +
+                            element.total +
+                            '</span></div></div></div>'
+                        );
+
+                        var lucro = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", ""))) * element.qty;
+                        if (lucro > 0) {
+                            $('.topLancamentos').append(
+                                '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
+                                lucro.toFixed(2) +
+                                '</span></div></div></div>'
+                            );
+                        }
+                        else {
+                            $('.topLancamentos').append(
+                                '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
+                                lucro.toFixed(2) +
+                                '</span></div></div></div>'
+                            );
+                        }
+
+                        totalRendimentos += parseFloat(lucro);
                     });
+                    //fim
 
-                    $('.topProventos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>R$ ' +
-                        parseFloat(element.total).toFixed(2) +
-                        '</span></div></div></div>'
-                    );
+                    $("#totalCotacao").append((parseFloat(totalCotacao) / data.ticker.total).toFixed(2));
+                    $("#totalDY").append((parseFloat(totalDY) / data.ticker.total).toFixed(2));
+                    $("#totalCotas").html(totalCotas);
+                    $("#totalSaldo").append(parseFloat(totalSaldo).toFixed(2));
+                    $("#totalVlMedio").append((parseFloat(totalVlMedio) / data.ticker.total).toFixed(2));
+                    $("#totalVariacao").append((parseFloat(totalVariacao)).toFixed(2));
 
-                    $('.topProventos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>R$ ' +
-                        parseFloat(element.avg).toFixed(2) +
-                        '</span></div></div></div>'
-                    );
+                    $("#totalCotacaoFii").append((parseFloat(totalCotacaoFii) / data.fii.total).toFixed(2));
+                    $("#totalDYFii").append((parseFloat(totalDYFii) / data.fii.total).toFixed(2));
+                    $("#totalCotasFii").html(totalCotasFii);
+                    $("#totalSaldoFii").append(parseFloat(totalSaldoFii).toFixed(2));
+                    $("#totalVlMedioFii").append((parseFloat(totalVlMedioFii) / data.fii.total).toFixed(2));
+                    $("#totalVariacaoFii").append((parseFloat(totalVariacaoFii)).toFixed(2));
 
-                    totalProventos += element.total;
-                });
-                //fim
-
-                //inicio
-                $.each(data.carteira, function (index, element) {
-
-                    if (element.type == "Ticker") {
-                        $('#qtdAtivosAcoes').html(data.ticker.total);
-                        $('#vlTotalAtivosAcoes').html(parseFloat(totalSaldo).toFixed(2));
-                        $('#porcentagemAtivosAcoes').html(parseFloat(element.percent).toFixed(2));
-                    }
-
-                    if (element.type == "Fii") {
-                        $('#qtdAtivosFiis').html(data.fii.total);
-                        $('#vlTotalAtivosFiis').html(parseFloat(totalSaldoFii).toFixed(2));
-                        $('#porcentagemAtivosFiis').html(parseFloat(element.percent).toFixed(2));
-                    }
-                });
-                //fim
-
-                //inicio
-                $.each(data.proventosInfo.data, function (index, element) {
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.category +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.ticker +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.qty +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.date_with +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.date_payment +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.value +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.total +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.net_total +
-                        '</span></div></div></div>'
-                    );
-                });
-                //fim
-
-                //inicio
-                $.each(data.lancamentos.data, function (index, element) {
-
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.type_investment +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.ticker +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.type +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.date +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.qty +
-                        '</span></div></div></div>'
-                    );
-
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.price +
-                        '</span></div></div></div>'
-                    );
-
-                    var lucroUnid = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", "")));
-                    if (lucroUnid > 0) {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
-                            lucroUnid.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                    if (totalVariacao >= 0) {
+                        $('#imgVariacao').attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
                     }
                     else {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
-                            lucroUnid.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                        $('#imgVariacao').attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
                     }
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
-                        element.total +
-                        '</span></div></div></div>'
-                    );
-
-                    var lucro = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", ""))) * element.qty;
-                    if (lucro > 0) {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
-                            lucro.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                    if (totalVariacaoFii >= 0) {
+                        $('#imgVariacaoFii').attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
                     }
                     else {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
-                            lucro.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                        $('#imgVariacaoFii').attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
                     }
 
-                    totalRendimentos += parseFloat(lucro);
-                });
-                //fim
+                    $("#totalProvMensalEsp").append(parseFloat(totalProvMensal).toFixed(2));
+                    $("#totalProvAnual").append(parseFloat(totalProvAnual).toFixed(2));
+                    $("#totalRendimentos").append(parseFloat(totalRendimentos).toFixed(2));
+                    $("#totalProventos").append((parseFloat(totalProventos)).toFixed(2));
 
-                $("#totalCotacao").append((parseFloat(totalCotacao) / data.ticker.total).toFixed(2));
-                $("#totalDY").append((parseFloat(totalDY) / data.ticker.total).toFixed(2));
-                $("#totalCotas").html(totalCotas);
-                $("#totalSaldo").append(parseFloat(totalSaldo).toFixed(2));
-                $("#totalVlMedio").append((parseFloat(totalVlMedio) / data.ticker.total).toFixed(2));
-                $("#totalVariacao").append((parseFloat(totalVariacao)).toFixed(2));
+                    if (totalRendimentos > 0) {
+                        $('#totalRendimentos').attr("style", "color: green;");
+                    }
+                    else {
+                        $('#totalRendimentos').attr("style", "color: red;");
+                    }
 
-                $("#totalCotacaoFii").append((parseFloat(totalCotacaoFii) / data.fii.total).toFixed(2));
-                $("#totalDYFii").append((parseFloat(totalDYFii) / data.fii.total).toFixed(2));
-                $("#totalCotasFii").html(totalCotasFii);
-                $("#totalSaldoFii").append(parseFloat(totalSaldoFii).toFixed(2));
-                $("#totalVlMedioFii").append((parseFloat(totalVlMedioFii) / data.fii.total).toFixed(2));
-                $("#totalVariacaoFii").append((parseFloat(totalVariacaoFii)).toFixed(2));
-
-                if (totalVariacao >= 0) {
-                    $('#imgVariacao').attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                    $("#render").attr("style", "display: normal;");
+                    $("#inicio").attr("style", "display: none;");
+                    $("#carregando").attr("style", "display: none;");
+                },
+                error: function (error) {
+                    $("#mensagemErro").text("Erro ao carregar os dados!");
+                    $("#mensagemErro").attr("style", "color: red; display: normal;");
+                    $("#render").attr("style", "display: none;");
+                    $("#inicio").attr("style", "display: normal;");
+                    $("#carregando").attr("style", "display: none;");
                 }
-                else {
-                    $('#imgVariacao').attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
-                }
-
-                if (totalVariacaoFii >= 0) {
-                    $('#imgVariacaoFii').attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
-                }
-                else {
-                    $('#imgVariacaoFii').attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
-                }
-
-                $("#totalProvMensalEsp").append(parseFloat(totalProvMensal).toFixed(2));
-                $("#totalProvAnual").append(parseFloat(totalProvAnual).toFixed(2));
-                $("#totalRendimentos").append(parseFloat(totalRendimentos).toFixed(2));
-                $("#totalProventos").append((parseFloat(totalProventos)).toFixed(2));
-
-                if (totalRendimentos > 0) {
-                    $('#totalRendimentos').attr("style", "color: green;");
-                }
-                else {
-                    $('#totalRendimentos').attr("style", "color: red;");
-                }
-
-                $("#render").attr("style", "display: normal;");
-                $("#inicio").attr("style", "display: none;");
-            },
-            error: function (error) {
-                $("#mensagemErro").text("Erro ao carregar os dados!");
-                $("#mensagemErro").attr("style", "color: red; display: normal;");
-                $("#render").attr("style", "display: none;");
-                $("#inicio").attr("style", "display: normal;");
-            }
-        });
-    }
+            });
+        }
 
     function CarregaResumo(ativo, categoria) {
         if ($("#rentAtivo").text() == ativo) {
@@ -1706,6 +1722,15 @@
         width: 100%;
         height: 95vh;
         /*  background: #6C7A89; */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #carregando {
+        width: 100%;
+        height: 95vh;
         display: flex;
         flex-direction: row;
         justify-content: center;
