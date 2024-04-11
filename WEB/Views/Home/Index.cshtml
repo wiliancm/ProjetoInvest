@@ -850,6 +850,7 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"></script>
 <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" rel="stylesheet">
 
 <script type="text/javascript">
@@ -1317,7 +1318,22 @@
                 }
 
                 new DataTable('#table-topAcoes', {
-                    order: [[1, 'desc']]
+                    order: [[1, 'desc']],
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
+                    },
+                    columnDefs: [
+                        {
+                            targets: [1, 2, 3, 4, 5, 6],
+                            render: function (data, type, full, meta) {
+                                if (type == "sort" || type == 'type') {
+                                    var num = $('input', data).val();
+                                    return parseFloat(num);
+                                }
+                                return data;
+                            }
+                        }
+                    ]
                 });
 
                 $("#render").attr("style", "display: normal;");
@@ -1405,7 +1421,7 @@
         --column-count: 8;
         grid-gap: var(--spacing);
         /*  display: flex;
-                                                                                    display: grid; */
+                                                                                                                    display: grid; */
         flex-wrap: wrap;
         grid-template-columns: repeat(var(--column-count),1fr);
         Overflow-x: scroll;
