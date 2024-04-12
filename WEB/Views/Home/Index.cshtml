@@ -34,7 +34,7 @@
 <!-- CONTEUDO -->
 <div id="render" style="display: none;">
     <!-- RESUMO -->
-    <section class="resumo" style="display: none;">
+    <section id="resumoInfos" class="resumo" style="display: none;">
         <div class="box especial margin-top-30 return-investment ">
             <header>
                 <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="RENTABILIDADE"></span>
@@ -44,7 +44,7 @@
                 <div class="desktop">
                     <ul class="nav filters-large">
                         <li class="nav-item">
-                            <a href="javascript:$('.resumo').toggle();"><span title=""> &nbsp;&nbsp; X &nbsp;&nbsp; </span></a>
+                            <a href="javascript:fechaResumo();"><span title=""> &nbsp;&nbsp; X &nbsp;&nbsp; </span></a>
                         </li>
                     </ul>
                 </div>
@@ -577,6 +577,143 @@
     </div>
     <div class="box especial margin-top-30 return-investment ">
         <header>
+            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="ETFs"></span>
+            <h2>
+                ETFs
+            </h2>
+            <div class="filters desktop">
+                <ul class="nav filters-large">
+                    <li class="nav-item">
+                        Qtd: <span id="qtdAtivosEtfs"></span>
+                    </li>
+                    <li class="nav-item">
+                        Total: R$ <span id="vlTotalAtivosEtfs"></span>
+                    </li>
+                    @* <li class="nav-item">
+                    Variação: <span id="variacaoAtivosAcoes"></span>%
+                    </li> *@
+                    <li class="nav-item">
+                        Porc. Carteira: <span id="porcentagemAtivosEtfs"></span>%
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="info_about" class="content">
+            <!-- AÇÕES -->
+            <table id="table-topEtfs" class="cards-ticker-info" style="width:100%;">
+                <thead>
+                    <tr class="visible-odd">
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="Cotação">Ação</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="Cotas">Cotas</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="VlMedio">VL Medio</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="VL Atual">VL Atual</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="Variação">Variação</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="Saldo">Saldo</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="DY">DY</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="">&nbsp;</span>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="topEtfs">
+                </tbody>
+                <tfoot class="botEtfs">
+                    <tr>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span title="Total">Total</span>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span id="totalCotasEtfs">0</span>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span id="totalVlMedioEtfs">R$ </span>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span id="totalCotacaoEtfs">R$ </span>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <img id="imgVariacao" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src="">
+                                <span id="totalVariacaoEtfs"></span>%
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span id="totalSaldoEtfs">R$ </span>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span id="totalDYEtfs"></span>%
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <a href="#"><span title="">&nbsp;</span></a>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+            <!-- FIM AÇÕES -->
+        </div>
+    </div>
+    <div class="box especial margin-top-30 return-investment ">
+        <header>
             <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="LANÇAMENTOS"></span>
             <h2>
                 LANÇAMENTOS
@@ -868,14 +1005,14 @@
             method: "GET",
             dataType: 'json',
             success: function (data) {
-                var totalCotacao = totalCotacaoFii = 0;
-                var totalDY = totalDYFii = 0;
-                var totalCotas = totalCotasFii = 0;
-                var totalSaldo = totalSaldoFii = 0;
-                var totalProvMensal = totalProvMensalFii = 0;
-                var totalProvAnual = totalProvAnualFii = 0;
-                var totalVlMedio = totalVlMedioFii = 0;
-                var totalVariacao = totalVariacaoFii = totalRendimentos = totalProventos = 0;
+                var totalCotacao = totalCotacaoFii = totalCotacaoEtf = 0;
+                var totalDY = totalDYFii = totalDYEtf = 0;
+                var totalCotas = totalCotasFii = totalCotasEtf = 0;
+                var totalSaldo = totalSaldoFii = totalSaldoEtf = 0;
+                var totalProvMensal = totalProvMensalFii = totalProvMensalEtf = 0;
+                var totalProvAnual = totalProvAnualFii = totalProvAnualEtf = 0;
+                var totalVlMedio = totalVlMedioFii = totalVlMedioEtf = 0;
+                var totalVariacao = totalVariacaoFii = totalRendimentos = totalProventos = totalVariacaoEtf = 0;
 
                 //inicio
                 $.each(data.ticker.data, function (index, element) {
@@ -981,6 +1118,113 @@
                     totalProvAnual += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
                     totalVlMedio += parseFloat(element.avg_price);
                     totalVariacao = parseFloat(element.appreciation) + parseFloat(totalVariacao);
+                });
+                //fim
+
+                //inicio
+                $.each(data.etf.data, function (index, element) {
+                    var linha = '';
+
+                    linha += '<tr class="visible-even">';
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
+                        $('.name', element.ticker).text() +
+                        '</span></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
+                        element.quantity +
+                        '</span><input type="hidden" id="impCotas' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.quantity +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>R$ ' +
+                        parseFloat(element.avg_price).toFixed(2) +
+                        '</span><input type="hidden" id="impVlMedio' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.avg_price +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span> R$ ' +
+                        parseFloat(element.current_price).toFixed(2) +
+                        '</span><input type="hidden" id="impVlAtual' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.current_price +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div>' +
+                        '<img id="imgVariacao' +
+                        $('.name', element.ticker).text() +
+                        '" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src=""> <span>' +
+                        parseFloat(element.appreciation).toFixed(2) +
+                        '%</span><input type="hidden" id="impVariacao' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.appreciation +
+                        '" /></div></div></td>'
+                        ;
+
+                    if (element.appreciation >= 0) {
+                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                    }
+                    else {
+                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                    }
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span> R$ ' +
+                        parseFloat(element.equity_total).toFixed(2) +
+                        '</span><input type="hidden" id="impSaldo' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.equity_total +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
+                        parseFloat(element.dy).toFixed(2) +
+                        '%</span><input type="hidden" id="impDY' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.dy +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info">' +
+                        '<div class="_card-body">' +
+                        '<a href="javascript:CarregaResumo(\'' +
+                        $('.name', element.ticker).text() +
+                        '\', \'acao\');"><span title="">Resumo</span></a>' +
+                        '</div>' +
+                        '</td>'
+                        ;
+
+                    linha += '</tr>';
+
+                    $('.topEtfs').append(linha);
+
+                    totalCotacaoEtf += element.current_price;
+                    totalDYEtf += parseFloat(element.dy);
+                    totalCotasEtf += element.quantity;
+                    totalSaldoEtf += element.equity_total;
+                    totalProvMensalEtf += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
+                    totalProvAnualEtf += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
+                    totalVlMedioEtf += parseFloat(element.avg_price);
+                    totalVariacaoEtf = parseFloat(element.appreciation) + parseFloat(totalVariacao);
                 });
                 //fim
 
@@ -1393,6 +1637,10 @@
         }
     }
 
+    function fechaResumo() {
+        $('#resumoInfos').toggle();
+    }
+
     @if (Model)
     {
         <text>
@@ -1421,7 +1669,7 @@
         --column-count: 8;
         grid-gap: var(--spacing);
         /*  display: flex;
-                                                                                                                    display: grid; */
+                                                                                                                            display: grid; */
         flex-wrap: wrap;
         grid-template-columns: repeat(var(--column-count),1fr);
         Overflow-x: scroll;
@@ -1922,5 +2170,4 @@
             margin-bottom: 10px;
         }
     }
-
 </style>

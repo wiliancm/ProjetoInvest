@@ -6,6 +6,7 @@
         {
             Ticker = new TickerDTO();
             Fii = new FundoImobiliarioDTO();
+            Etf = new TickerDTO();
             Carteira = new List<CarteiraDTO>();
             DataAtualizado = DateTime.Now;
             Iniciado = false;
@@ -13,6 +14,7 @@
 
         public TickerDTO Ticker { get; set; }
         public FundoImobiliarioDTO Fii { get; set; }
+        public TickerDTO Etf { get; set; }
         public ProventosDTO Proventos { get; set; }
         public ProventosDTO ProventosInfo { get; set; }
         public List<CarteiraDTO> Carteira { get; set; }
