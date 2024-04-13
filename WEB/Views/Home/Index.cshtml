@@ -692,7 +692,7 @@
                         </th>
                         <th class="_card-info table-infos">
                             <div class="_card-header table-infos-td">
-                                <span id="totalDYEtf"></span>%
+                                <span id="totalDYEEtf"></span>%
                             </div>
                         </th>
                         <th class="_card-info table-infos">
@@ -724,71 +724,77 @@
         </header>
         <div id="info_about" class="content">
             <!-- PROVENTOS INFS -->
-            <section class="cards-ticker-lancamentos topLancamentos">
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="TIPO">TIPO</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="ATIVO">ATIVO</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="ORDEM">ORDEM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="DATA COM">DATA COM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="QTD">QTD</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="VL UND">VL UND</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="VL UND REN">VL UND REN</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="TOTAL">TOTAL</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="TOTAL REND">TOTAL REND</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <table id="table-topLancamentos" class="cards-ticker-info" style="width:100%;">
+                <thead>
+                    <tr class="visible-odd">
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="TIPO">TIPO</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="ATIVO">ATIVO</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="ORDEM">ORDEM</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="DATA COM">DATA COM</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="QTD">QTD</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="VL UND">VL UND</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="VL UND REN">VL UND REN</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="TOTAL">TOTAL</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="TOTAL REND">TOTAL REND</span>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="topLancamentos">
+                </tbody>
+            </table>
             <!-- FIM PROVENTOS INFS -->
         </div>
     </div>
@@ -1002,7 +1008,7 @@
             dataType: 'json',
             success: function (data) {
                 var totalCotacao = totalCotacaoFii = totalCotacaoEtf = 0;
-                var totalDY = totalDYFii = totalDYEtf = 0;
+                var totalDY = totalDYFii = totalDYEEtf = 0;
                 var totalCotas = totalCotasFii = totalCotasEtf = 0;
                 var totalSaldo = totalSaldoFii = totalSaldoEtf = 0;
                 var totalProvMensal = totalProvMensalFii = totalProvMensalEtf = 0;
@@ -1241,7 +1247,7 @@
                         '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.quantity +
                         '</span><input type="hidden" id="impCotas' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '" value="' +
                         element.quantity +
                         '" /></div></div></td>'
@@ -1251,7 +1257,7 @@
                         '<td class="_card-info"><div class="_card-body"><div><span>R$ ' +
                         parseFloat(element.avg_price).toFixed(2) +
                         '</span><input type="hidden" id="impVlMedio' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '" value="' +
                         element.avg_price +
                         '" /></div></div></td>'
@@ -1261,7 +1267,7 @@
                         '<td class="_card-info"><div class="_card-body"><div><span> R$ ' +
                         parseFloat(element.current_price).toFixed(2) +
                         '</span><input type="hidden" id="impVlAtual' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '" value="' +
                         element.current_price +
                         '" /></div></div></td>'
@@ -1270,28 +1276,28 @@
                     linha +=
                         '<td class="_card-info"><div class="_card-body"><div>' +
                         '<img id="imgVariacao' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '" class="img-direction" style="height: 12px; margin-left: 2px; display: inline;" src=""> <span>' +
                         parseFloat(element.appreciation).toFixed(2) +
                         '%</span><input type="hidden" id="impVariacao' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '" value="' +
                         element.appreciation +
                         '" /></div></div></td>'
                         ;
 
                     if (element.appreciation >= 0) {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                        $('#imgVariacao' + $('.name', element.ticker).text().toUpperCase()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
                     }
                     else {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                        $('#imgVariacao' + $('.name', element.ticker).text().toUpperCase()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
                     }
 
                     linha +=
                         '<td class="_card-info"><div class="_card-body"><div><span> R$ ' +
                         parseFloat(element.equity_total).toFixed(2) +
                         '</span><input type="hidden" id="impSaldo' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '" value="' +
                         element.equity_total +
                         '" /></div></div></td>'
@@ -1301,7 +1307,7 @@
                         '<td class="_card-info"><div class="_card-body"><div><span>' +
                         parseFloat(element.dy || 0).toFixed(2) +
                         '%</span><input type="hidden" id="impDY' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '" value="' +
                         element.dy +
                         '" /></div></div></td>'
@@ -1311,7 +1317,7 @@
                         '<td class="_card-info">' +
                         '<div class="_card-body">' +
                         '<a href="javascript:CarregaResumo(\'' +
-                        $('.name', element.ticker).text() +
+                        $('.name', element.ticker).text().toUpperCase() +
                         '\', \'acao\');"><span title="">Resumo</span></a>' +
                         '</div>' +
                         '</td>'
@@ -1322,7 +1328,7 @@
                     $('.topEtfs').append(linha);
 
                     totalCotacaoEtf += element.current_price;
-                    totalDYEtf += parseFloat(element.dy);
+                    totalDYEEtf += parseFloat(element.dy);
                     totalCotasEtf += element.quantity;
                     totalSaldoEtf += element.equity_total;
                     totalProvMensalEtf += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100 / 12);
@@ -1453,79 +1459,105 @@
                 //inicio
                 $.each(data.lancamentos.data, function (index, element) {
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    var linha = '';
+
+                    linha += '<tr class="visible-even">';
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.type_investment +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.ticker +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.type +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.date +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.qty +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.price +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    var lucroUnid = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", "")));
+                    var lucroUnid = (parseFloat($("#impVlAtual" + element.ticker.toUpperCase()).val()) - parseFloat(element.price_adjusted.replace("R$ ", "")));
                     if (lucroUnid > 0) {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
+                        linha +=
+                            '<td class="_card-info"><div class="_card-body"><div><span style="color: green;">R$ ' +
                             lucroUnid.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                            '</span></div></div></td>'
+                            ;
                     }
                     else {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
-                            lucroUnid.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                        if (lucroUnid == 0) {
+                            linha +=
+                                '<td class="_card-info"><div class="_card-body"><div><span style="color: blue;">R$ ' +
+                                lucroUnid.toFixed(2) +
+                                '</span></div></div></td>'
+                                ;
+                        }
+                        else {
+                            linha +=
+                                '<td class="_card-info"><div class="_card-body"><div><span style="color: red;">R$ ' +
+                                lucroUnid.toFixed(2) +
+                                '</span></div></div></td>'
+                                ;
+                        }
                     }
 
-                    $('.topLancamentos').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.total +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    var lucro = (parseFloat($("#impVlAtual" + element.ticker).val()) - parseFloat(element.price_adjusted.replace("R$ ", ""))) * element.qty;
+                    var lucro = (parseFloat($("#impVlAtual" + element.ticker.toUpperCase()).val()) - parseFloat(element.price_adjusted.replace("R$ ", ""))) * element.qty;
                     if (lucro > 0) {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
+                        linha +=
+                            '<td class="_card"><div class="_card-body"><div><span style="color: green;">R$ ' +
                             lucro.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                            '</span></div></div></td>'
+                            ;
                     }
                     else {
-                        $('.topLancamentos').append(
-                            '<div class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
-                            lucro.toFixed(2) +
-                            '</span></div></div></div>'
-                        );
+                        if (lucroUnid == 0) {
+                            linha +=
+                                '<td class="_card"><div class="_card-body"><div><span style="color: blue;">R$ ' +
+                                lucro.toFixed(2) +
+                                '</span></div></div></td>'
+                                ;
+                        }
+                        else {
+                            linha +=
+                                '<td class="_card"><div class="_card-body"><div><span style="color: red;">R$ ' +
+                                lucro.toFixed(2) +
+                                '</span></div></div></td>'
+                                ;
+                        }                        
                     }
+
+                    linha += '</tr>';
+
+                    $('.topLancamentos').append(linha);
 
                     totalRendimentos += parseFloat(lucro);
                 });
@@ -1540,14 +1572,14 @@
                 $("#totalVariacao").append((parseFloat(totalVariacao)).toFixed(2));
 
                 $("#totalCotacaoFii").append((parseFloat(totalCotacaoFii) / data.fii.total).toFixed(2));
-                $("#totalDYFii").append((parseFloat(totalDYFii) / data.fii.total).toFixed(2));
+                $("#totalDYEFii").append((parseFloat(totalDYFii) / data.fii.total).toFixed(2));
                 $("#totalCotasFii").html(totalCotasFii);
                 $("#totalSaldoFii").append(parseFloat(totalSaldoFii).toFixed(2));
                 $("#totalVlMedioFii").append((parseFloat(totalVlMedioFii) / data.fii.total).toFixed(2));
                 $("#totalVariacaoFii").append((parseFloat(totalVariacaoFii)).toFixed(2));
 
                 $("#totalCotacaoEtf").append((parseFloat(totalCotacaoEtf) / data.etf.total).toFixed(2));
-                $("#totalDYEtf").append((parseFloat(totalDYEtf) / data.etf.total).toFixed(2));
+                $("#totalDYEEtf").append((parseFloat(totalDYEEtf) / data.etf.total || 0).toFixed(2));
                 $("#totalCotasEtf").html(totalCotasEtf);
                 $("#totalSaldoEtf").append(parseFloat(totalSaldoEtf).toFixed(2));
                 $("#totalVlMedioEtf").append((parseFloat(totalVlMedioEtf) / data.etf.total).toFixed(2));
@@ -1638,6 +1670,24 @@
                                 if (type == "sort" || type == 'type') {
                                     var num = $('input', data).val();
                                     return parseFloat(num);
+                                }
+                                return data;
+                            }
+                        }
+                    ]
+                });
+                new DataTable('#table-topLancamentos', {
+                    order: [[6, 'desc']],
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
+                    },
+                    columnDefs: [
+                        {
+                            targets: [4, 5, 6, 7, 8],
+                            render: function (data, type, full, meta) {
+                                if (type == "sort" || type == 'type') {
+                                    var num = $('span', data).text();
+                                    return parseFloat(num.replace("R$ ", ""));
                                 }
                                 return data;
                             }
@@ -1737,7 +1787,7 @@
         --column-count: 8;
         grid-gap: var(--spacing);
         /*  display: flex;
-                                                                                                                                                display: grid; */
+                                                                                                                                                                display: grid; */
         flex-wrap: wrap;
         grid-template-columns: repeat(var(--column-count),1fr);
         Overflow-x: scroll;
