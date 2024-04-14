@@ -925,64 +925,70 @@
             </section>
             <!-- FIM PROVENTOS -->
             <!-- PROVENTOS INFS -->
-            <section class="cards-ticker-proventos-resumo topProventosInfs" style="margin-top: 20px;">
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="CATEGORIA">CATEGORIA</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="ATIVO">ATIVO</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="QTD">QTD</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="DATA COM">DATA COM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="DATA PAG">DATA PAG</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="VL DIVIDENDO">VL DIVIDENDO</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="TOTAL">TOTAL</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="_card-proventos">
-                    <div class="_card-proventos-header">
-                        <div>
-                            <span title="TOTAL LÍQ">TOTAL LÍQ</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <table id="table-topProventosInfs" class="cards-ticker-info" style="width:100%; margin-top: 30px;">
+                <thead>
+                    <tr class="visible-odd">
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="CATEGORIA">CATEGORIA</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="ATIVO">ATIVO</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="QTD">QTD</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="DATA COM">DATA COM</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="DATA PAG">DATA PAG</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="VL DIVIDENDO">VL DIVIDENDO</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="TOTAL">TOTAL</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="TOTAL LÍQ">TOTAL LÍQ</span>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="topProventosInfs">
+                </tbody>
+            </table>
             <!-- FIM PROVENTOS INFS -->
         </div>
     </div>
@@ -1071,13 +1077,6 @@
                         '" /></div></div></td>'
                         ;
 
-                    if (element.appreciation >= 0) {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
-                    }
-                    else {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
-                    }
-
                     linha +=
                         '<td class="_card-info"><div class="_card-body"><div><span> R$ ' +
                         parseFloat(element.equity_total).toFixed(2) +
@@ -1111,6 +1110,13 @@
                     linha += '</tr>';
 
                     $('.topAcoes').append(linha);
+
+                    if (element.appreciation >= 0) {
+                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                    }
+                    else {
+                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                    }
 
                     totalCotacao += element.current_price;
                     totalDY += parseFloat(element.dy);
@@ -1179,13 +1185,6 @@
                         '" /></div></div></td>'
                         ;
 
-                    if (element.appreciation >= 0) {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
-                    }
-                    else {
-                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
-                    }
-
                     linha +=
                         '<td class="_card-info"><div class="_card-body"><div><span> R$ ' +
                         parseFloat(element.equity_total).toFixed(2) +
@@ -1219,6 +1218,13 @@
                     linha += '</tr>';
 
                     $('.topFii').append(linha);
+
+                    if (element.appreciation >= 0) {
+                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                    }
+                    else {
+                        $('#imgVariacao' + $('.name', element.ticker).text()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                    }
 
                     totalCotacaoFii += element.current_price;
                     totalDYFii += parseFloat(element.dy);
@@ -1286,13 +1292,6 @@
                         '" /></div></div></td>'
                         ;
 
-                    if (element.appreciation >= 0) {
-                        $('#imgVariacao' + $('.name', element.ticker).text().toUpperCase()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
-                    }
-                    else {
-                        $('#imgVariacao' + $('.name', element.ticker).text().toUpperCase()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
-                    }
-
                     linha +=
                         '<td class="_card-info"><div class="_card-body"><div><span> R$ ' +
                         parseFloat(element.equity_total).toFixed(2) +
@@ -1326,6 +1325,13 @@
                     linha += '</tr>';
 
                     $('.topEtfs').append(linha);
+
+                    if (element.appreciation >= 0) {
+                        $('#imgVariacao' + $('.name', element.ticker).text().toUpperCase()).attr("src", "https://investidor10.com.br/assets/front/images/seta-up.svg");
+                    }
+                    else {
+                        $('#imgVariacao' + $('.name', element.ticker).text().toUpperCase()).attr("src", "https://investidor10.com.br/assets/front/images/seta-down.svg");
+                    }
 
                     totalCotacaoEtf += element.current_price;
                     totalDYEEtf += parseFloat(element.dy);
@@ -1406,53 +1412,61 @@
                 //inicio
                 $.each(data.proventosInfo.data, function (index, element) {
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    var linha = '';
+
+                    linha += '<tr class="visible-even">';
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.category +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.ticker +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.qty +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.date_with +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.date_payment +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.value +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.total +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
 
-                    $('.topProventosInfs').append(
-                        '<div class="_card"><div class="_card-body"><div><span>' +
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
                         element.net_total +
-                        '</span></div></div></div>'
-                    );
+                        '</span></div></div></td>'
+                        ;
+
+                    linha += '</tr>';
+
+                    $('.topProventosInfs').append(linha);
                 });
                 //fim
 
@@ -1552,7 +1566,7 @@
                                 lucro.toFixed(2) +
                                 '</span></div></div></td>'
                                 ;
-                        }                        
+                        }
                     }
 
                     linha += '</tr>';
@@ -1694,6 +1708,23 @@
                         }
                     ]
                 });
+                new DataTable('#table-topProventosInfs', {
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
+                    },
+                    columnDefs: [
+                        {
+                            targets: [1, 2, 3, 4, 5, 6],
+                            render: function (data, type, full, meta) {
+                                if (type == "sort" || type == 'type') {
+                                    var num = $('input', data).val();
+                                    return parseFloat(num);
+                                }
+                                return data;
+                            }
+                        }
+                    ]
+                });
                 new DataTable('#table-indicators-history');
 
                 // layout
@@ -1787,7 +1818,7 @@
         --column-count: 8;
         grid-gap: var(--spacing);
         /*  display: flex;
-                                                                                                                                                                display: grid; */
+                                                                                                                                                                        display: grid; */
         flex-wrap: wrap;
         grid-template-columns: repeat(var(--column-count),1fr);
         Overflow-x: scroll;
@@ -2143,12 +2174,12 @@
         display: none;
     }
 
-    .topProventosInfs ._card ._card-body span .image {
+    .topProventosInfs ._card-info ._card-body span .image {
         align-items: center;
         display: flex;
     }
 
-        .topProventosInfs ._card ._card-body span .image img {
+        .topProventosInfs ._card-info ._card-body span .image img {
             border: 1px solid #ccc;
             border-radius: 5px;
             margin-right: 10px;
@@ -2273,9 +2304,7 @@
 
     @@media only screen and (max-width: 768px) {
         .filters {
-            padding-right: 20px;
-            Overflow-x: scroll !important;
-            min-width: 200px;
+            display: none;
         }
 
         .cards-ticker-resumo {
