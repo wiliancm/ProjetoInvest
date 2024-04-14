@@ -374,6 +374,20 @@
                         <th class="_card-info table-infos">
                             <div class="_card-header table-infos-td">
                                 <div>
+                                    <span title="REND">REND</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="REND/REAL">REND/REAL</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
                                     <span title="">&nbsp;</span>
                                 </div>
                             </div>
@@ -418,6 +432,16 @@
                         <th class="_card-info table-infos">
                             <div class="_card-header table-infos-td">
                                 <span id="totalDY"></span>%
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                R$ <span id="totalRend"></span>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                R$ <span id="totalRendReal"></span>
                             </div>
                         </th>
                         <th class="_card-info table-infos">
@@ -510,6 +534,20 @@
                         <th class="_card-info table-infos">
                             <div class="_card-header table-infos-td">
                                 <div>
+                                    <span title="REND">REND</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
+                                    <span title="REND/REAL">REND/REAL</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <div>
                                     <span title="">&nbsp;</span>
                                 </div>
                             </div>
@@ -554,6 +592,16 @@
                         <th class="_card-info table-infos">
                             <div class="_card-header table-infos-td">
                                 <span id="totalDYEFii"></span>%
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span id="totalRendFii"></span>%
+                            </div>
+                        </th>
+                        <th class="_card-info table-infos">
+                            <div class="_card-header table-infos-td">
+                                <span id="totalRendRealFii"></span>%
                             </div>
                         </th>
                         <th class="_card-info table-infos">
@@ -1021,6 +1069,7 @@
                 var totalProvAnual = totalProvAnualFii = totalProvAnualEtf = 0;
                 var totalVlMedio = totalVlMedioFii = totalVlMedioEtf = 0;
                 var totalVariacao = totalVariacaoFii = totalRendimentos = totalProventos = totalVariacaoEtf = 0;
+                var totalRend = totalRendFii = totalRendReal = totalRendRealFii = 0;
 
                 //inicio
                 $.each(data.ticker.data, function (index, element) {
@@ -1098,6 +1147,27 @@
                         ;
 
                     linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
+                        parseFloat(element.current_price * element.dy / 100 / 12).toFixed(8) +
+                        '</span><input type="hidden" id="impRend' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.dy +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
+                        parseFloat((element.current_price * element.dy / 100 / 12) / element.current_price).toFixed(8) +
+                        '</span><input type="hidden" id="impRendReal' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.dy +
+                        '" /></div></div></td>'
+                        ;
+
+
+                    linha +=
                         '<td class="_card-info">' +
                         '<div class="_card-body">' +
                         '<a href="javascript:CarregaResumo(\'' +
@@ -1126,6 +1196,8 @@
                     totalProvAnual += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
                     totalVlMedio += parseFloat(element.avg_price);
                     totalVariacao = parseFloat(element.appreciation) + parseFloat(totalVariacao);
+                    totalRend += parseFloat(element.current_price * element.dy / 100 / 12);
+                    totalRendReal += parseFloat((element.current_price * element.dy / 100 / 12) / element.current_price);
                 });
                 //fim
 
@@ -1206,6 +1278,26 @@
                         ;
 
                     linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
+                        parseFloat(element.current_price * element.dy / 100 / 12).toFixed(8) +
+                        '</span><input type="hidden" id="impRend' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.dy +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
+                        '<td class="_card-info"><div class="_card-body"><div><span>' +
+                        parseFloat((element.current_price * element.dy / 100 / 12) / element.current_price).toFixed(8) +
+                        '</span><input type="hidden" id="impRendReal' +
+                        $('.name', element.ticker).text() +
+                        '" value="' +
+                        element.dy +
+                        '" /></div></div></td>'
+                        ;
+
+                    linha +=
                         '<td class="_card-info">' +
                         '<div class="_card-body">' +
                         '<a href="javascript:CarregaResumo(\'' +
@@ -1234,6 +1326,8 @@
                     totalProvAnualFii += parseFloat(parseFloat(element.dy) * parseFloat(element.equity_total) / 100);
                     totalVlMedioFii += parseFloat(element.avg_price);
                     totalVariacaoFii = parseFloat(element.appreciation) + parseFloat(totalVariacaoFii);
+                    totalRendFii += parseFloat(element.current_price * element.dy / 100 / 12);
+                    totalRendRealFii += parseFloat((element.current_price * element.dy / 100 / 12) / element.current_price);
                 });
                 //fim
 
@@ -1584,6 +1678,8 @@
                 $("#totalSaldo").append(parseFloat(totalSaldo).toFixed(2));
                 $("#totalVlMedio").append((parseFloat(totalVlMedio) / data.ticker.total).toFixed(2));
                 $("#totalVariacao").append((parseFloat(totalVariacao)).toFixed(2));
+                $("#totalRend").append((parseFloat(totalRend) / data.ticker.total).toFixed(8));
+                $("#totalRendReal").append((parseFloat(totalRendReal) / data.ticker.total).toFixed(8));
 
                 $("#totalCotacaoFii").append((parseFloat(totalCotacaoFii) / data.fii.total).toFixed(2));
                 $("#totalDYEFii").append((parseFloat(totalDYFii) / data.fii.total).toFixed(2));
@@ -1591,6 +1687,8 @@
                 $("#totalSaldoFii").append(parseFloat(totalSaldoFii).toFixed(2));
                 $("#totalVlMedioFii").append((parseFloat(totalVlMedioFii) / data.fii.total).toFixed(2));
                 $("#totalVariacaoFii").append((parseFloat(totalVariacaoFii)).toFixed(2));
+                $("#totalRendFii").append((parseFloat(totalRendFii) / data.fii.total).toFixed(8));
+                $("#totalRendRealFii").append((parseFloat(totalRendRealFii) / data.fii.total).toFixed(8));
 
                 $("#totalCotacaoEtf").append((parseFloat(totalCotacaoEtf) / data.etf.total).toFixed(2));
                 $("#totalDYEEtf").append((parseFloat(totalDYEEtf) / data.etf.total || 0).toFixed(2));
@@ -1818,7 +1916,7 @@
         --column-count: 8;
         grid-gap: var(--spacing);
         /*  display: flex;
-                                                                                                                                                                        display: grid; */
+                                                                                                                                                                                display: grid; */
         flex-wrap: wrap;
         grid-template-columns: repeat(var(--column-count),1fr);
         Overflow-x: scroll;
