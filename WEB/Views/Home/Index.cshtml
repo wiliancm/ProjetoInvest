@@ -33,6 +33,88 @@
 <!-- LOGIN -->
 <!-- CONTEUDO -->
 <div id="render" style="display: none;">
+    <!-- INDICATIVOS -->
+    <div class="box especial margin-top-30 return-investment ">
+        <header>
+            <span class="icon"><img style="padding: 0 0px" src="https://investidor10.com.br/assets/front/images/line-graph.svg" alt="PROVENTOS"></span>
+            <h2>
+                CONDIÇÕES
+            </h2>
+            <div class="filters desktop">
+                <ul class="nav filters-large">
+                    <li class="nav-item">
+                        <button onclick="javascript:abreCondicoes();" class="btn-default black">
+                            Ver
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="info_condicoes" class="content dt-layout-row dt-layout-table" style="display: none;">
+            <table id="table-condicoes" class="table table-balance display" style="width:100%">
+                <thead>
+                    <tr class="visible-odd">
+                        <th></th>
+                        <th class="year">ROE</th>
+                        <th class="year">DY</th>
+                        <th class="year">Div Liq/Ebit</th>
+                        <th class="year">CAGR Receita</th>
+                        <th class="year">CAGR Lucro</th>
+                        <th class="year">P/L</th>
+                        <th class="year">P/PV</th>
+                        <th class="year">Liq Diária</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="visible-even">
+                        <td class="indicator">
+                            Valores
+                        </td>
+                        <td class="value">13%</td>
+                        <td class="value">5%</td>
+                        <td class="value">3x</td>
+                        <td class="value">8%</td>
+                        <td class="value">5%</td>
+                        <td class="value">10x</td>
+                        <td class="value">2x</td>
+                        <td class="value">1M</td>
+                    </tr>
+                    <tr class="visible-even">
+                        <td class="indicator">
+                            Estimativa
+                        </td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MENOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MENOR</td>
+                        <td class="value">MENOR</td>
+                        <td class="value">MAIOR</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="info_about" class="content" style="align-content: center; text-align: center;">
+                <div class="title">
+                    Analisar Ativo
+                </div>
+                <br />
+                <select id="tipoAtivo" name="tipoAtivo" class="js-example-basic-single">
+                    <option value="acao">AÇÕES</option>
+                    <option value="fii">FIIs</option>
+                    <option value="etf">ETFs</option>
+                </select>
+                <input id="ativo" type="text" class="text-field" style="width: 100px; text-align: center; margin-left: 10px;" />
+                <p><span id="mensagemErroPesq" style="color: red; display: none;">Favor informar um id de carteira.</span></p>
+                <button onclick="javascript:CarregaCondicoes();" class="btn-default black">
+                    Pesquisar
+                </button>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- FIM INDICATIVOS -->
     <!-- RESUMO -->
     <section id="resumoInfos" class="resumo" style="display: none;">
         <div class="box especial margin-top-30 return-investment ">
@@ -1044,12 +1126,11 @@
 </div>
 <!-- CONTEUDO -->
 
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"></script>
-<link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" rel="stylesheet">
-
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#tipoAtivo').select2();
+    });
 
     function carregaCarteira() {
 
@@ -1887,6 +1968,118 @@
         $('#resumoInfos').toggle();
     }
 
+    function CarregaCondicoes() {
+
+        if ($("#ativo").val() == null || $("#ativo").val() == "" || $("#tipoAtivo").val() == null || $("#tipoAtivo").val() == "") {
+            $("#mensagemErroPesq").text("Informe um ativo!");
+            $("#mensagemErroPesq").attr("style", "color: red; display: normal;");
+
+            return false;
+        }
+
+        $.ajax({
+            url: "home/Resumo?ativo=" + $("#ativo").val() + "&categoria=" + $("#tipoAtivo").val(),
+            method: "GET",
+            dataType: 'json',
+            success: function (data) {
+                var linha = roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '';
+                linha += '<tr class="visible-even">';
+
+                linha +=
+                    '<td class="value"><div class="_card-body"><div><span>' +
+                    $("#ativo").val().toUpperCase() +
+                    '</span></div></div></td>'
+                    ;
+
+                $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
+                    var list = $('.d-flex', element).text().split("\n");
+
+                    if (list[0].trim() == "ROE") {
+                        roe =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[2] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+
+                    if (list[0].trim() == "DIVIDEND YIELD - " + $("#ativo").val().toUpperCase()) {
+                        dy =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[2] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+
+                    if (list[0].trim() == "DÍVIDA LÍQUIDA / EBIT") {
+                        divLiq =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[2] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+
+                    if (list[0].trim() == "CAGR RECEITAS 5 ANOS") {
+                        cagrRec =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[2] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+
+                    if (list[0].trim() == "CAGR LUCROS 5 ANOS") {
+                        cagrLuc =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[2] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+
+                    if (list[0].trim() == "P/L") {
+                        pl =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[2] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+
+                    if (list[0].trim() == "P/VP") {
+                        pv =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[2] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+                });
+
+                $.each($('.cell', $('#table-indicators-company', data.resumo)), function (index, element) {
+                    var list = $('span', element).text().split("\n");
+
+                    if (list[0].trim() == "Liquidez Média Diária") {
+                        liqDiaria =
+                            '<td class="value"><div class="_card-body"><div><span>' +
+                            list[1] +
+                            '</span></div></div></td>'
+                            ;
+                    }
+                });
+
+                linha += roe + dy + divLiq + cagrRec + cagrLuc + pl + pv + liqDiaria;
+
+                linha += '</tr>';
+
+                $('#table-condicoes').append(linha);
+            },
+            error: function (error) {
+                $("#mensagemErroPesq").text("Erro ao carregar os dados.");
+                $("#mensagemErroPesq").attr("style", "color: red; display: normal;");
+            }
+        });
+    }
+
+    function abreCondicoes() {
+        $('#info_condicoes').toggle();
+    }
+
     @if (Model)
     {
         <text>
@@ -1915,8 +2108,6 @@
         --spacing: 0 1px;
         --column-count: 8;
         grid-gap: var(--spacing);
-        /*  display: flex;
-                                                                                                                                                                                display: grid; */
         flex-wrap: wrap;
         grid-template-columns: repeat(var(--column-count),1fr);
         Overflow-x: scroll;
@@ -2194,7 +2385,7 @@
     }
 
     th:first-child {
-        display: flex;
+        /* display: flex; */
         justify-content: space-between;
     }
 
@@ -2216,12 +2407,12 @@
     }
 
     #table-indicators-history tr td:first-child, #table-indicators-history tr th:first-child {
-        display: flex;
+        /*         display: flex; */
         justify-content: space-between;
     }
 
     #table-indicators-history tr td:first-child, #table-indicators-history tr th:first-child {
-        display: flex;
+        /*         display: flex; */
         justify-content: space-between;
     }
 
@@ -2398,6 +2589,104 @@
 
     .dt-layout-table {
         Overflow-x: auto !important;
+    }
+
+    ul.nav.filters-large select {
+        border: 2px solid #cecece;
+        border-radius: 14px;
+        color: #293038;
+        font-family: Nunito,sans-serif;
+        font-weight: 800;
+        padding: 3px 4px;
+    }
+
+    .custom-select {
+        position: relative;
+        width: 100%;
+    }
+
+    .select2-hidden-accessible {
+        border: 0 !important;
+        clip: rect(0 0 0 0) !important;
+        -webkit-clip-path: inset(50%) !important;
+        clip-path: inset(50%) !important;
+        height: 1px !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        position: absolute !important;
+        width: 1px !important;
+        white-space: nowrap !important;
+    }
+
+    .select2-container {
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+        position: relative;
+        vertical-align: middle;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border: 2px solid #cecece;
+        border-radius: 14px;
+        color: #293038;
+        font-family: Nunito,sans-serif;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .select2-container--default .select2-selection--single {
+        background-color: #fff;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+    }
+
+    .select2-container .select2-selection--single {
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        height: 28px;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .section-sectors .select2-container--default .select2-selection--single .select2-selection__rendered {
+        padding-left: 15px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 25px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #444;
+        line-height: 28px;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        display: block;
+        padding-left: 8px;
+        padding-right: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .select2-selection__rendered {
+        padding-right: 30px !important;
+    }
+
+    .section-sectors .select2-container--default .select2-selection--single .select2-selection__arrow {
+        right: 10px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 26px;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        width: 20px;
     }
 
     @@media only screen and (max-width: 768px) {

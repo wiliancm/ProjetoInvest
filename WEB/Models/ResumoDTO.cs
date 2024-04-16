@@ -8,6 +8,8 @@
             Fii = new FundoImobiliarioDTO();
             Etf = new TickerDTO();
             Carteira = new List<CarteiraDTO>();
+            ProventosInfo = new ProventosDTO();
+            Lancamentos = new LancamentosDTO();
             DataAtualizado = DateTime.Now;
             Iniciado = false;
         }

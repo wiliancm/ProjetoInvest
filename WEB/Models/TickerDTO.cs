@@ -24,7 +24,7 @@
         public double percent_wallet { get; set; }
         public double percent_ideal { get; set; }
         public double percent_wallet_type { get; set; }
-        public int percent_ideal_type { get; set; }
+        public string percent_ideal_type { get; set; }
         public double equity_total { get; set; }
         public string buy { get; set; }
         public string avg_rating { get; set; }
