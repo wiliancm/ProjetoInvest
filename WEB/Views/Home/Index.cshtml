@@ -51,7 +51,26 @@
             </div>
         </header>
         <div id="info_condicoes" class="content dt-layout-row dt-layout-table" style="display: none;">
-            <table id="table-condicoes" class="table table-balance display" style="width:100%">
+            <div id="info_about" class="content" style="align-content: center; text-align: center;">
+                <div class="title">
+                    Analisar Ativo
+                </div>
+                <br />
+                <select id="tipoAtivo" name="tipoAtivo" class="js-example-basic-single">
+                    <option value="acao">AÇÕES</option>
+                    <option value="fii">FIIs</option>
+                    <option value="etf">ETFs</option>
+                </select>
+                <input id="ativo" type="text" class="text-field" style="width: 100px; text-align: center; margin-left: 10px;" />
+                <p><span id="mensagemErroPesq" style="color: red; display: none;">Favor informar um id de carteira.</span></p>
+                <button onclick="javascript:CarregaCondicoes();" class="btn-default black">
+                    Pesquisar
+                </button>
+                <br />
+                <br />
+            </div>
+            <!-- TABELA ACOES -->
+            <table id="table-condicoes-acoes" class="table table-balance display" style="width:100%;">
                 <thead>
                     <tr class="visible-odd">
                         <th></th>
@@ -94,24 +113,78 @@
                     </tr>
                 </tbody>
             </table>
-            <div id="info_about" class="content" style="align-content: center; text-align: center;">
-                <div class="title">
-                    Analisar Ativo
-                </div>
-                <br />
-                <select id="tipoAtivo" name="tipoAtivo" class="js-example-basic-single">
-                    <option value="acao">AÇÕES</option>
-                    <option value="fii">FIIs</option>
-                    <option value="etf">ETFs</option>
-                </select>
-                <input id="ativo" type="text" class="text-field" style="width: 100px; text-align: center; margin-left: 10px;" />
-                <p><span id="mensagemErroPesq" style="color: red; display: none;">Favor informar um id de carteira.</span></p>
-                <button onclick="javascript:CarregaCondicoes();" class="btn-default black">
-                    Pesquisar
-                </button>
-                <br />
-                <br />
-            </div>
+            <!-- FIM TABELA ACOES -->
+            <!-- TABELA FII -->
+            <table id="table-condicoes-fii" class="table table-balance display" style="width:100%; display: none;">
+                <thead>
+                    <tr class="visible-odd">
+                        <th></th>
+                        <th class="year">ÚLTIMO RENDIMENTO</th>
+                        <th class="year">DY</th>
+                        <th class="year">VACÂNCIA</th>
+                        <th class="year">DIVERSIFICACAO</th>
+                        <th class="year">P/PV</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="visible-even">
+                        <td class="indicator">
+                            Estimativa
+                        </td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MENOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MENOR</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- FIM TABELA FII -->
+            <!-- TABELA ETF -->
+            <table id="table-condicoes-etf" class="table table-balance display" style="width:100%; display: none;">
+                <thead>
+                    <tr class="visible-odd">
+                        <th></th>
+                        <th class="year">ROE</th>
+                        <th class="year">DY</th>
+                        <th class="year">Div Liq/Ebit</th>
+                        <th class="year">CAGR Receita</th>
+                        <th class="year">CAGR Lucro</th>
+                        <th class="year">P/L</th>
+                        <th class="year">P/PV</th>
+                        <th class="year">Liq Diária</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="visible-even">
+                        <td class="indicator">
+                            Valores
+                        </td>
+                        <td class="value">13%</td>
+                        <td class="value">5%</td>
+                        <td class="value">3x</td>
+                        <td class="value">8%</td>
+                        <td class="value">5%</td>
+                        <td class="value">10x</td>
+                        <td class="value">2x</td>
+                        <td class="value">1M</td>
+                    </tr>
+                    <tr class="visible-even">
+                        <td class="indicator">
+                            Estimativa
+                        </td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MENOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MAIOR</td>
+                        <td class="value">MENOR</td>
+                        <td class="value">MENOR</td>
+                        <td class="value">MAIOR</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- FIM TABELA ETF -->
         </div>
     </div>
     <!-- FIM INDICATIVOS -->
@@ -1130,6 +1203,10 @@
 
     $(document).ready(function () {
         $('#tipoAtivo').select2();
+
+        $('#tipoAtivo').on('select2:select', function (e) {
+            validaTabelas();
+        });
     });
 
     function carregaCarteira() {
@@ -1251,7 +1328,7 @@
                     linha +=
                         '<td class="_card-info">' +
                         '<div class="_card-body">' +
-                        '<a href="javascript:CarregaResumo(\'' +
+                        '<a href="javascript:preCarregaCondicoes(\'' +
                         $('.name', element.ticker).text() +
                         '\', \'acao\');"><span title="">Resumo</span></a>' +
                         '</div>' +
@@ -1381,9 +1458,9 @@
                     linha +=
                         '<td class="_card-info">' +
                         '<div class="_card-body">' +
-                        '<a href="javascript:CarregaResumo(\'' +
+                        '<a href="javascript:preCarregaCondicoes(\'' +
                         $('.name', element.ticker).text() +
-                        '\', \'acao\');"><span title="">Resumo</span></a>' +
+                        '\', \'fii\');"><span title="">Resumo</span></a>' +
                         '</div>' +
                         '</td>'
                         ;
@@ -1490,9 +1567,9 @@
                     linha +=
                         '<td class="_card-info">' +
                         '<div class="_card-body">' +
-                        '<a href="javascript:CarregaResumo(\'' +
+                        '<a href="javascript:preCarregaCondicoes(\'' +
                         $('.name', element.ticker).text().toUpperCase() +
-                        '\', \'acao\');"><span title="">Resumo</span></a>' +
+                        '\', \'etf\');"><span title="">Resumo</span></a>' +
                         '</div>' +
                         '</td>'
                         ;
@@ -1982,7 +2059,7 @@
             method: "GET",
             dataType: 'json',
             success: function (data) {
-                var linha = roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '';
+                var linha = '';
                 linha += '<tr class="visible-even">';
 
                 linha +=
@@ -1991,83 +2068,133 @@
                     '</span></div></div></td>'
                     ;
 
-                $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
-                    var list = $('.d-flex', element).text().split("\n");
+                if ($("#tipoAtivo").val() == "acao") {
+                    var roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '';
 
-                    if (list[0].trim() == "ROE") {
-                        roe =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[2] +
-                            '</span></div></div></td>'
-                            ;
-                    }
+                    $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
+                        var list = $('.d-flex', element).text().split("\n");
 
-                    if (list[0].trim() == "DIVIDEND YIELD - " + $("#ativo").val().toUpperCase()) {
-                        dy =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[2] +
-                            '</span></div></div></td>'
-                            ;
-                    }
+                        if (list[0].trim() == "ROE") {
+                            roe =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[2] +
+                                '</span></div></div></td>'
+                                ;
+                        }
 
-                    if (list[0].trim() == "DÍVIDA LÍQUIDA / EBIT") {
-                        divLiq =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[2] +
-                            '</span></div></div></td>'
-                            ;
-                    }
+                        if (list[0].trim() == "DIVIDEND YIELD - " + $("#ativo").val().toUpperCase()) {
+                            dy =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[2] +
+                                '</span></div></div></td>'
+                                ;
+                        }
 
-                    if (list[0].trim() == "CAGR RECEITAS 5 ANOS") {
-                        cagrRec =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[2] +
-                            '</span></div></div></td>'
-                            ;
-                    }
+                        if (list[0].trim() == "DÍVIDA LÍQUIDA / EBIT") {
+                            divLiq =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[2] +
+                                '</span></div></div></td>'
+                                ;
+                        }
 
-                    if (list[0].trim() == "CAGR LUCROS 5 ANOS") {
-                        cagrLuc =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[2] +
-                            '</span></div></div></td>'
-                            ;
-                    }
+                        if (list[0].trim() == "CAGR RECEITAS 5 ANOS") {
+                            cagrRec =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[2] +
+                                '</span></div></div></td>'
+                                ;
+                        }
 
-                    if (list[0].trim() == "P/L") {
-                        pl =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[2] +
-                            '</span></div></div></td>'
-                            ;
-                    }
+                        if (list[0].trim() == "CAGR LUCROS 5 ANOS") {
+                            cagrLuc =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[2] +
+                                '</span></div></div></td>'
+                                ;
+                        }
 
-                    if (list[0].trim() == "P/VP") {
-                        pv =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[2] +
-                            '</span></div></div></td>'
-                            ;
-                    }
-                });
+                        if (list[0].trim() == "P/L") {
+                            pl =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[2] +
+                                '</span></div></div></td>'
+                                ;
+                        }
 
-                $.each($('.cell', $('#table-indicators-company', data.resumo)), function (index, element) {
-                    var list = $('span', element).text().split("\n");
+                        if (list[0].trim() == "P/VP") {
+                            pv =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[2] +
+                                '</span></div></div></td>'
+                                ;
+                        }
+                    });
 
-                    if (list[0].trim() == "Liquidez Média Diária") {
-                        liqDiaria =
-                            '<td class="value"><div class="_card-body"><div><span>' +
-                            list[1] +
-                            '</span></div></div></td>'
-                            ;
-                    }
-                });
+                    $.each($('.cell', $('#table-indicators-company', data.resumo)), function (index, element) {
+                        var list = $('span', element).text().split("\n");
 
-                linha += roe + dy + divLiq + cagrRec + cagrLuc + pl + pv + liqDiaria;
+                        if (list[0].trim() == "Liquidez Média Diária") {
+                            liqDiaria =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                list[1] +
+                                '</span></div></div></td>'
+                                ;
+                        }
+                    });
 
-                linha += '</tr>';
+                    linha += roe + dy + divLiq + cagrRec + cagrLuc + pl + pv + liqDiaria;
 
-                $('#table-condicoes').append(linha);
+                    linha += '</tr>';
+
+                    $('#table-condicoes-acoes').append(linha);
+                }
+
+                if ($("#tipoAtivo").val() == "fii") {
+                    var ultRend = dy = vac = div = pv = '';
+
+                    $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
+                        var list = $('.d-flex', element).text().split("\n");
+
+                        if (list.length > 2 && list[1].trim() == "ÚLTIMO RENDIMENTO") {
+                            ultRend =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                $('span', $('.value', $('.cell', $('#table-indicators', data.resumo)))[index]).text(); +
+                                '</span></div></div></td>'
+                                ;
+                        }
+
+                        if (list.length > 2 && list[1].trim() == "VACÂNCIA") {
+                            vac =
+                                '<td class="value"><div class="_card-body"><div><span>' +
+                                $('span', $('.value', $('.cell', $('#table-indicators', data.resumo)))[index]).text(); +
+                                '</span></div></div></td>'
+                                ;
+                        }
+                    });
+
+                    dy =
+                        '<td class="value"><div class="_card-body"><div><span>' +
+                        $('.dy', $('#cards-ticker', data.resumo)).find('span')[1].outerText +
+                        '</span></div></div></td>'
+                        ;
+
+                    pv =
+                        '<td class="value"><div class="_card-body"><div><span>' +
+                        $('.vp', $('#cards-ticker', data.resumo)).find('span')[1].outerText +
+                        '</span></div></div></td>'
+                        ;
+
+                    div = '<td></td>';
+
+                    linha += ultRend + dy + vac + div + pv;
+
+                    linha += '</tr>';
+
+                    $('#table-condicoes-fii').append(linha);
+
+                    $('.content--info', $('.yield-distribuition', data.resumo)).html();
+                }
             },
             error: function (error) {
                 $("#mensagemErroPesq").text("Erro ao carregar os dados.");
@@ -2078,6 +2205,38 @@
 
     function abreCondicoes() {
         $('#info_condicoes').toggle();
+    }
+
+    function preCarregaCondicoes(ativo, categoria) {
+        $('#info_condicoes').attr("style", "display: normal;");
+
+        $("#ativo").val(ativo);
+        $("#tipoAtivo").val(categoria);
+        $("#tipoAtivo").change();
+
+        validaTabelas();
+        CarregaCondicoes();
+
+        var scrollPos = $("#render").offset().top;
+        $(window).scrollTop(scrollPos - 20);
+    }
+
+    function validaTabelas(){
+        $("#table-condicoes-acoes").attr("style", "display: none;");
+        $("#table-condicoes-fii").attr("style", "display: none;");
+        $("#table-condicoes-etf").attr("style", "display: none;");
+
+        if ($("#tipoAtivo").val() == "acao") {
+            $("#table-condicoes-acoes").attr("style", "display: normal;");
+        }
+
+        if ($("#tipoAtivo").val() == "fii") {
+            $("#table-condicoes-fii").attr("style", "display: normal;");
+        }
+
+        if ($("#tipoAtivo").val() == "etf") {
+            $("#table-condicoes-etf").attr("style", "display: normal;");
+        }
     }
 
     @if (Model)
