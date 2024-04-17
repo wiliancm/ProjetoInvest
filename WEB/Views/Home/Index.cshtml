@@ -40,7 +40,7 @@
             <h2>
                 CONDIÇÕES
             </h2>
-            <div class="filters desktop">
+            <div class="desktop">
                 <ul class="nav filters-large">
                     <li class="nav-item">
                         <button onclick="javascript:abreCondicoes();" class="btn-default black">
@@ -69,122 +69,130 @@
                 <br />
                 <br />
             </div>
-            <!-- TABELA ACOES -->
-            <table id="table-condicoes-acoes" class="table table-balance display" style="width:100%;">
-                <thead>
-                    <tr class="visible-odd">
-                        <th></th>
-                        <th class="year">ROE</th>
-                        <th class="year">DY</th>
-                        <th class="year">Div Liq/Ebit</th>
-                        <th class="year">CAGR Receita</th>
-                        <th class="year">CAGR Lucro</th>
-                        <th class="year">P/L</th>
-                        <th class="year">P/PV</th>
-                        <th class="year">Liq Diária</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="visible-even">
-                        <td class="indicator">
-                            Valores
-                        </td>
-                        <td class="value">13%</td>
-                        <td class="value">5%</td>
-                        <td class="value">3x</td>
-                        <td class="value">8%</td>
-                        <td class="value">5%</td>
-                        <td class="value">10x</td>
-                        <td class="value">2x</td>
-                        <td class="value">1M</td>
-                    </tr>
-                    <tr class="visible-even">
-                        <td class="indicator">
-                            Estimativa
-                        </td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MENOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MENOR</td>
-                        <td class="value">MENOR</td>
-                        <td class="value">MAIOR</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- FIM TABELA ACOES -->
-            <!-- TABELA FII -->
-            <table id="table-condicoes-fii" class="table table-balance display" style="width:100%; display: none;">
-                <thead>
-                    <tr class="visible-odd">
-                        <th></th>
-                        <th class="year">ÚLTIMO RENDIMENTO</th>
-                        <th class="year">DY</th>
-                        <th class="year">VACÂNCIA</th>
-                        <th class="year">DIVERSIFICACAO</th>
-                        <th class="year">P/PV</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="visible-even">
-                        <td class="indicator">
-                            Estimativa
-                        </td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MENOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MENOR</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- FIM TABELA FII -->
-            <!-- TABELA ETF -->
-            <table id="table-condicoes-etf" class="table table-balance display" style="width:100%; display: none;">
-                <thead>
-                    <tr class="visible-odd">
-                        <th></th>
-                        <th class="year">ROE</th>
-                        <th class="year">DY</th>
-                        <th class="year">Div Liq/Ebit</th>
-                        <th class="year">CAGR Receita</th>
-                        <th class="year">CAGR Lucro</th>
-                        <th class="year">P/L</th>
-                        <th class="year">P/PV</th>
-                        <th class="year">Liq Diária</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="visible-even">
-                        <td class="indicator">
-                            Valores
-                        </td>
-                        <td class="value">13%</td>
-                        <td class="value">5%</td>
-                        <td class="value">3x</td>
-                        <td class="value">8%</td>
-                        <td class="value">5%</td>
-                        <td class="value">10x</td>
-                        <td class="value">2x</td>
-                        <td class="value">1M</td>
-                    </tr>
-                    <tr class="visible-even">
-                        <td class="indicator">
-                            Estimativa
-                        </td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MENOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MAIOR</td>
-                        <td class="value">MENOR</td>
-                        <td class="value">MENOR</td>
-                        <td class="value">MAIOR</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- FIM TABELA ETF -->
+            <div id="carregandoCond" style="display: none;">
+                <img src="~/icons8-girador.gif" width="100px" />
+            </div>
+            <div id="divCond" style="overflow: auto;">
+                <!-- TABELA ACOES -->
+                <table id="table-condicoes-acoes" class="table table-balance display" style="width:100%;">
+                    <thead>
+                        <tr class="visible-odd">
+                            <th></th>
+                            <th class="year">ROE</th>
+                            <th class="year">DY</th>
+                            <th class="year">Div Liq/Ebit</th>
+                            <th class="year">CAGR Receita</th>
+                            <th class="year">CAGR Lucro</th>
+                            <th class="year">P/L</th>
+                            <th class="year">P/PV</th>
+                            <th class="year">Liq Diária</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="visible-even">
+                            <td class="indicator">
+                                Valores
+                            </td>
+                            <td class="value">13%</td>
+                            <td class="value">5%</td>
+                            <td class="value">3x</td>
+                            <td class="value">8%</td>
+                            <td class="value">5%</td>
+                            <td class="value">10x</td>
+                            <td class="value">2x</td>
+                            <td class="value">1M</td>
+                        </tr>
+                        <tr class="visible-even">
+                            <td class="indicator">
+                                Estimativa
+                            </td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MENOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MENOR</td>
+                            <td class="value">MENOR</td>
+                            <td class="value">MAIOR</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- FIM TABELA ACOES -->
+                <!-- TABELA FII -->
+                <table id="table-condicoes-fii" class="table table-balance display" style="width:100%; display: none;">
+                    <thead>
+                        <tr class="visible-odd">
+                            <th></th>
+                            <th class="year">ÚLTIMO RENDIMENTO</th>
+                            <th class="year">DY</th>
+                            <th class="year">VACÂNCIA</th>
+                            <th class="year">DIVERSIFICACAO</th>
+                            <th class="year">P/PV</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="visible-even">
+                            <td class="indicator">
+                                Estimativa
+                            </td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MENOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MENOR</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- FIM TABELA FII -->
+                <!-- TABELA ETF -->
+                <table id="table-condicoes-etf" class="table table-balance display" style="width:100%; display: none;">
+                    <thead>
+                        <tr class="visible-odd">
+                            <th></th>
+                            <th class="year">ROE</th>
+                            <th class="year">DY</th>
+                            <th class="year">Div Liq/Ebit</th>
+                            <th class="year">CAGR Receita</th>
+                            <th class="year">CAGR Lucro</th>
+                            <th class="year">P/L</th>
+                            <th class="year">P/PV</th>
+                            <th class="year">Liq Diária</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="visible-even">
+                            <td class="indicator">
+                                Valores
+                            </td>
+                            <td class="value">13%</td>
+                            <td class="value">5%</td>
+                            <td class="value">3x</td>
+                            <td class="value">8%</td>
+                            <td class="value">5%</td>
+                            <td class="value">10x</td>
+                            <td class="value">2x</td>
+                            <td class="value">1M</td>
+                        </tr>
+                        <tr class="visible-even">
+                            <td class="indicator">
+                                Estimativa
+                            </td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MENOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MAIOR</td>
+                            <td class="value">MENOR</td>
+                            <td class="value">MENOR</td>
+                            <td class="value">MAIOR</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- FIM TABELA ETF -->
+            </div>
+            <!-- TABELA DIVIDENDOS -->
+            <div id="divDividendos" style="margin-top: 20px;"></div>
+            <!-- FIM TABELA DIVIDENDOS -->
         </div>
     </div>
     <!-- FIM INDICATIVOS -->
@@ -1893,7 +1901,7 @@
 
                 // tabelas
                 new DataTable('#table-topAcoes', {
-                    order: [[1, 'desc']],
+                    order: [[5, 'desc']],
                     language: {
                         url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
                     },
@@ -1911,7 +1919,7 @@
                     ]
                 });
                 new DataTable('#table-topEtfs', {
-                    order: [[1, 'desc']],
+                    order: [[5, 'desc']],
                     language: {
                         url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
                     },
@@ -1929,7 +1937,7 @@
                     ]
                 });
                 new DataTable('#table-topFii', {
-                    order: [[1, 'desc']],
+                    order: [[5, 'desc']],
                     language: {
                         url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
                     },
@@ -1965,6 +1973,7 @@
                     ]
                 });
                 new DataTable('#table-topProventosInfs', {
+                    "ordering": false,
                     language: {
                         url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
                     },
@@ -2054,6 +2063,9 @@
             return false;
         }
 
+        $("#carregandoCond").attr("style", "display: normal;");
+        $("#divCond").attr("style", "display: none;");
+
         $.ajax({
             url: "home/Resumo?ativo=" + $("#ativo").val() + "&categoria=" + $("#tipoAtivo").val(),
             method: "GET",
@@ -2069,62 +2081,111 @@
                     ;
 
                 if ($("#tipoAtivo").val() == "acao") {
-                    var roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '';
+                    var roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '<td></td>';
 
                     $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
                         var list = $('.d-flex', element).text().split("\n");
 
                         if (list[0].trim() == "ROE") {
-                            roe =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("%", "")).toFixed(2) >= 13) {
+                                roe = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                roe = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            roe +=
+                                '<div class="_card-body"><div><span>' +
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
                         }
 
                         if (list[0].trim() == "DIVIDEND YIELD - " + $("#ativo").val().toUpperCase()) {
-                            dy =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("%", "")).toFixed(2) >= 5) {
+                                dy = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                dy = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            dy +=
+                                '<div class="_card-body"><div><span>' +
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
                         }
 
                         if (list[0].trim() == "DÍVIDA LÍQUIDA / EBIT") {
-                            divLiq =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("%", "")).toFixed(2) < 3) {
+                                divLiq = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                divLiq = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            divLiq +=
+                                '<div class="_card-body"><div><span>' +
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
                         }
 
                         if (list[0].trim() == "CAGR RECEITAS 5 ANOS") {
-                            cagrRec =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("%", "")).toFixed(2) >= 8) {
+                                cagrRec = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                cagrRec = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            cagrRec +=
+                                '<div class="_card-body"><div><span>' +
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
                         }
 
                         if (list[0].trim() == "CAGR LUCROS 5 ANOS") {
-                            cagrLuc =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("%", "")).toFixed(2) >= 5) {
+                                cagrLuc = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                cagrLuc = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            cagrLuc +=
+                                '<div class="_card-body"><div><span>' +
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
                         }
 
                         if (list[0].trim() == "P/L") {
-                            pl =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("%", "")).toFixed(2) <= 10) {
+                                pl = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                pl = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            pl +=
+                                '<div class="_card-body"><div><span>' +
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
                         }
 
                         if (list[0].trim() == "P/VP") {
-                            pv =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("%", "")).toFixed(2) <= 2) {
+                                pv = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                pv = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            pv +=
+                                '<div class="_card-body"><div><span>' +
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
@@ -2135,8 +2196,15 @@
                         var list = $('span', element).text().split("\n");
 
                         if (list[0].trim() == "Liquidez Média Diária") {
-                            liqDiaria =
-                                '<td class="value"><div class="_card-body"><div><span>' +
+                            if (parseFloat(list[2].replace("R$ ", "").replaceAll(".", "")) >= 1000000) {
+                                liqDiaria = '<td class="value" style="background-color: cyan;">';
+                            }
+                            else {
+                                liqDiaria = '<td class="value" style="background-color: gold;">';
+                            }
+
+                            liqDiaria +=
+                                '<div class="_card-body"><div><span>' +
                                 list[1] +
                                 '</span></div></div></td>'
                                 ;
@@ -2151,7 +2219,7 @@
                 }
 
                 if ($("#tipoAtivo").val() == "fii") {
-                    var ultRend = dy = vac = div = pv = '';
+                    var ultRend = dy = vac = div = pv = '<td></td>';
 
                     $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
                         var list = $('.d-flex', element).text().split("\n");
@@ -2159,7 +2227,7 @@
                         if (list.length > 2 && list[1].trim() == "ÚLTIMO RENDIMENTO") {
                             ultRend =
                                 '<td class="value"><div class="_card-body"><div><span>' +
-                                $('span', $('.value', $('.cell', $('#table-indicators', data.resumo)))[index]).text(); +
+                                $('span', $('.value', $('.cell', $('#table-indicators', data.resumo)))[index]).text() +
                                 '</span></div></div></td>'
                                 ;
                         }
@@ -2167,7 +2235,7 @@
                         if (list.length > 2 && list[1].trim() == "VACÂNCIA") {
                             vac =
                                 '<td class="value"><div class="_card-body"><div><span>' +
-                                $('span', $('.value', $('.cell', $('#table-indicators', data.resumo)))[index]).text(); +
+                                $('span', $('.value', $('.cell', $('#table-indicators', data.resumo)))[index]).text() +
                                 '</span></div></div></td>'
                                 ;
                         }
@@ -2195,10 +2263,24 @@
 
                     $('.content--info', $('.yield-distribuition', data.resumo)).html();
                 }
+
+                $("#divDividendos").html($('#table-dividends-history', data.resumo));
+                new DataTable('#table-dividends-history', {
+                    "ordering": false,
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
+                    }
+                });
+
+                $("#carregandoCond").attr("style", "display: none;");
+                $("#divCond").attr("style", "display: normal;");
             },
             error: function (error) {
                 $("#mensagemErroPesq").text("Erro ao carregar os dados.");
                 $("#mensagemErroPesq").attr("style", "color: red; display: normal;");
+
+                $("#carregandoCond").attr("style", "display: none;");
+                $("#divCond").attr("style", "display: normal;");
             }
         });
     }
@@ -2221,7 +2303,7 @@
         $(window).scrollTop(scrollPos - 20);
     }
 
-    function validaTabelas(){
+    function validaTabelas() {
         $("#table-condicoes-acoes").attr("style", "display: none;");
         $("#table-condicoes-fii").attr("style", "display: none;");
         $("#table-condicoes-etf").attr("style", "display: none;");
@@ -2846,6 +2928,19 @@
         top: 1px;
         right: 1px;
         width: 20px;
+    }
+
+    #carregandoCond {
+        text-align: center;
+    }
+
+    .value {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    #divCond {
+        overflow: auto;
     }
 
     @@media only screen and (max-width: 768px) {
