@@ -2064,7 +2064,8 @@
         }
 
         $("#carregandoCond").attr("style", "display: normal;");
-        $("#divCond").attr("style", "display: none;");
+        $("#divCond").attr("style", "display: none;"); 
+        $("#divDividendos").attr("style", "display: none;");
 
         $.ajax({
             url: "home/Resumo?ativo=" + $("#ativo").val() + "&categoria=" + $("#tipoAtivo").val(),
@@ -2274,6 +2275,7 @@
 
                 $("#carregandoCond").attr("style", "display: none;");
                 $("#divCond").attr("style", "display: normal;");
+                $("#divDividendos").attr("style", "display: normal;");
             },
             error: function (error) {
                 $("#mensagemErroPesq").text("Erro ao carregar os dados.");
@@ -2281,6 +2283,7 @@
 
                 $("#carregandoCond").attr("style", "display: none;");
                 $("#divCond").attr("style", "display: normal;");
+                $("#divDividendos").attr("style", "display: normal;");
             }
         });
     }
