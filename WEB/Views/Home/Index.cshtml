@@ -130,7 +130,7 @@
                             <th class="year">ÚLTIMO RENDIMENTO</th>
                             <th class="year">DY</th>
                             <th class="year">VACÂNCIA</th>
-                            <th class="year">DIVERSIFICACAO</th>
+                            <th class="year">REND</th>
                             <th class="year">P/PV</th>
                         </tr>
                     </thead>
@@ -194,7 +194,6 @@
                     </tbody>
                 </table>
                 <!-- FIM TABELA ETF -->
-
                 <!-- TABELA DIVIDENDOS MES -->
                 <table id="table-condicoes-mes" class="table table-balance display" style="width:100%; margin-top: 30px;">
                     <thead>
@@ -2311,7 +2310,12 @@
                         '</span></div></div></td>'
                         ;
 
-                    div = '<td></td>';
+                    div = 
+                        '<td class="value"><div class="_card-body"><div><span>' +
+                        parseFloat(($('.value', $('.cotacao', data.resumo))[0].outerText.replace("R$ ", "").replace(",", ".") * 
+                        $('.dy', $('#cards-ticker', data.resumo)).find('span')[1].outerText.replace("%", "").replace(",", ".") / 100 / 12) / 
+                        $('.value', $('.cotacao', data.resumo))[0].outerText.replace("R$ ", "").replace(",", ".")).toFixed(8) +
+                        '</span></div></div></td>';
 
                     linha += acao + ultRend + dy + vac + div + pv;
 
