@@ -189,7 +189,48 @@
                     </tbody>
                 </table>
                 <!-- FIM TABELA ETF -->
-            </div>
+
+                <!-- TABELA DIVIDENDOS MES -->
+                <table id="table-condicoes-mes" class="table table-balance display" style="width:100%;">
+                    <thead>
+                        <tr class="visible-odd">
+                            <th class="year">MÊS</th>
+                            <th class="year">01</th>
+                            <th class="year">02</th>
+                            <th class="year">03</th>
+                            <th class="year">04</th>
+                            <th class="year">05</th>
+                            <th class="year">06</th>
+                            <th class="year">07</th>
+                            <th class="year">08</th>
+                            <th class="year">09</th>
+                            <th class="year">10</th>
+                            <th class="year">11</th>
+                            <th class="year">12</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="visible-even">
+                            <td class="indicator">
+                                QTD
+                            </td>
+                            <td id="m01" class="value"></td>
+                            <td id="m02" class="value"></td>
+                            <td id="m03" class="value"></td>
+                            <td id="m04" class="value"></td>
+                            <td id="m05" class="value"></td>
+                            <td id="m06" class="value"></td>
+                            <td id="m07" class="value"></td>
+                            <td id="m08" class="value"></td>
+                            <td id="m09" class="value"></td>
+                            <td id="m10" class="value"></td>
+                            <td id="m11" class="value"></td>
+                            <td id="m12" class="value"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- FIM TABELA DIVIDENDOS MES -->
+            </div>            
             <!-- TABELA DIVIDENDOS -->
             <div id="divDividendos" style="margin-top: 20px;"></div>
             <!-- FIM TABELA DIVIDENDOS -->
@@ -2272,6 +2313,40 @@
                         url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json'
                     }
                 });
+
+                var m01 = m02 = m03 = m04 = m05 = m06 = m07 = m08 = m09 = m10 = m11 = m12 = 0;
+                $.each($('tr', $('#table-dividends-history', data.resumo)), function (index, element) {
+                    if (index > 0) {
+                        switch ($(element).find('td')[2].outerText.substring(3, 5)) {
+                            case "01": m01++; break;
+                            case "02": m02++; break;
+                            case "03": m03++; break;
+                            case "04": m04++; break;
+                            case "05": m05++; break;
+                            case "06": m06++; break;
+                            case "07": m07++; break;
+                            case "08": m08++; break;
+                            case "09": m09++; break;
+                            case "10": m10++; break;
+                            case "11": m11++; break;
+                            case "12": m12++; break;
+                            default: break;
+                        }
+                    }
+                });
+
+                $("#m01").text(m01);
+                $("#m02").text(m02);
+                $("#m03").text(m03);
+                $("#m04").text(m04);
+                $("#m05").text(m05);
+                $("#m06").text(m06);
+                $("#m07").text(m07);
+                $("#m08").text(m08);
+                $("#m09").text(m09);
+                $("#m10").text(m10);
+                $("#m11").text(m11);
+                $("#m12").text(m12);                
 
                 $("#carregandoCond").attr("style", "display: none;");
                 $("#divCond").attr("style", "display: normal;");
