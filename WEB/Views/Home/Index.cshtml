@@ -78,6 +78,7 @@
                     <thead>
                         <tr class="visible-odd">
                             <th></th>
+                            <th class="year">Cotação</th>
                             <th class="year">ROE</th>
                             <th class="year">DY</th>
                             <th class="year">Div Liq/Ebit</th>
@@ -93,6 +94,7 @@
                             <td class="indicator">
                                 Valores
                             </td>
+                            <td class="value"></td>
                             <td class="value">13%</td>
                             <td class="value">5%</td>
                             <td class="value">3x</td>
@@ -106,6 +108,7 @@
                             <td class="indicator">
                                 Estimativa
                             </td>
+                            <td class="value"></td>
                             <td class="value">MAIOR</td>
                             <td class="value">MAIOR</td>
                             <td class="value">MENOR</td>
@@ -123,6 +126,7 @@
                     <thead>
                         <tr class="visible-odd">
                             <th></th>
+                            <th class="year">COTAÇÃO</th>
                             <th class="year">ÚLTIMO RENDIMENTO</th>
                             <th class="year">DY</th>
                             <th class="year">VACÂNCIA</th>
@@ -135,6 +139,7 @@
                             <td class="indicator">
                                 Estimativa
                             </td>
+                            <td class="value"></td>
                             <td class="value">MAIOR</td>
                             <td class="value">MAIOR</td>
                             <td class="value">MENOR</td>
@@ -2107,6 +2112,7 @@
         $("#carregandoCond").attr("style", "display: normal;");
         $("#divCond").attr("style", "display: none;"); 
         $("#divDividendos").attr("style", "display: none;");
+        $("#mensagemErroPesq").attr("style", "display: none;");
 
         $.ajax({
             url: "home/Resumo?ativo=" + $("#ativo").val() + "&categoria=" + $("#tipoAtivo").val(),
@@ -2123,7 +2129,12 @@
                     ;
 
                 if ($("#tipoAtivo").val() == "acao") {
-                    var roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '<td></td>';
+                    var acao = roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '<td></td>';
+
+                    acao =  '<td class="value"><div class="_card-body"><div><span>' +
+                    $('.value', $('.cotacao', data.resumo))[0].outerText +
+                    '</span></div></div></td>'
+                    ;
 
                     $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
                         var list = $('.d-flex', element).text().split("\n");
@@ -2253,7 +2264,7 @@
                         }
                     });
 
-                    linha += roe + dy + divLiq + cagrRec + cagrLuc + pl + pv + liqDiaria;
+                    linha += acao + roe + dy + divLiq + cagrRec + cagrLuc + pl + pv + liqDiaria;
 
                     linha += '</tr>';
 
@@ -2261,7 +2272,12 @@
                 }
 
                 if ($("#tipoAtivo").val() == "fii") {
-                    var ultRend = dy = vac = div = pv = '<td></td>';
+                    var acao = ultRend = dy = vac = div = pv = '<td></td>';
+
+                    acao =  '<td class="value"><div class="_card-body"><div><span>' +
+                    $('.value', $('.cotacao', data.resumo))[0].outerText +
+                    '</span></div></div></td>'
+                    ;
 
                     $.each($('.cell', $('#table-indicators', data.resumo)), function (index, element) {
                         var list = $('.d-flex', element).text().split("\n");
@@ -2297,7 +2313,7 @@
 
                     div = '<td></td>';
 
-                    linha += ultRend + dy + vac + div + pv;
+                    linha += acao + ultRend + dy + vac + div + pv;
 
                     linha += '</tr>';
 
