@@ -191,7 +191,7 @@
                 <!-- FIM TABELA ETF -->
 
                 <!-- TABELA DIVIDENDOS MES -->
-                <table id="table-condicoes-mes" class="table table-balance display" style="width:100%;">
+                <table id="table-condicoes-mes" class="table table-balance display" style="width:100%; margin-top: 30px;">
                     <thead>
                         <tr class="visible-odd">
                             <th class="year">MÊS</th>
@@ -232,7 +232,7 @@
                 <!-- FIM TABELA DIVIDENDOS MES -->
             </div>            
             <!-- TABELA DIVIDENDOS -->
-            <div id="divDividendos" style="margin-top: 20px;"></div>
+            <div id="divDividendos" style="margin-top: 30px;"></div>
             <!-- FIM TABELA DIVIDENDOS -->
         </div>
     </div>
@@ -2335,18 +2335,14 @@
                     }
                 });
 
-                $("#m01").text(m01);
-                $("#m02").text(m02);
-                $("#m03").text(m03);
-                $("#m04").text(m04);
-                $("#m05").text(m05);
-                $("#m06").text(m06);
-                $("#m07").text(m07);
-                $("#m08").text(m08);
-                $("#m09").text(m09);
-                $("#m10").text(m10);
-                $("#m11").text(m11);
-                $("#m12").text(m12);                
+                var media = (m01 + m02 + m03 + m04 + m05 + m06 + m07 + m08 + m09 + m10 + m11 + m12) / 12;
+                for (let i = 1; i <= 12; i++) {
+                    var text = (i < 10 ? eval("m0" + i) : eval("m" + i));
+                    if (text >= media)
+                        (i < 10 ? $("#m0" + i) : $("#m" + i)).html('<span style="color: blue;">' + text + '</span>');
+                    else
+                        (i < 10 ? $("#m0" + i) : $("#m" + i)).html('<span style="color: red;">' + text + '</span>');
+                }
 
                 $("#carregandoCond").attr("style", "display: none;");
                 $("#divCond").attr("style", "display: normal;");
@@ -3019,6 +3015,10 @@
 
     #divCond {
         overflow: auto;
+    }
+
+    #divDividendos {
+        margin-top: 30px;
     }
 
     @@media only screen and (max-width: 768px) {
