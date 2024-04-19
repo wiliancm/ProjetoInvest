@@ -79,6 +79,7 @@
                         <tr class="visible-odd">
                             <th></th>
                             <th class="year">Cotação</th>
+                            <th class="year">REND</th>
                             <th class="year">ROE</th>
                             <th class="year">DY</th>
                             <th class="year">Div Liq/Ebit</th>
@@ -95,6 +96,7 @@
                                 Valores
                             </td>
                             <td class="value"></td>
+                            <td class="value"></td>
                             <td class="value">13%</td>
                             <td class="value">5%</td>
                             <td class="value">3x</td>
@@ -109,6 +111,7 @@
                                 Estimativa
                             </td>
                             <td class="value"></td>
+                            <td class="value">MAIOR</td>
                             <td class="value">MAIOR</td>
                             <td class="value">MAIOR</td>
                             <td class="value">MENOR</td>
@@ -2128,7 +2131,7 @@
                     ;
 
                 if ($("#tipoAtivo").val() == "acao") {
-                    var acao = roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '<td></td>';
+                    var acao = rend = roe = dy = divLiq = cagrRec = cagrLuc = pl = pv = liqDiaria = '<td></td>';
 
                     acao =  '<td class="value"><div class="_card-body"><div><span>' +
                     $('.value', $('.cotacao', data.resumo))[0].outerText +
@@ -2166,6 +2169,14 @@
                                 list[2] +
                                 '</span></div></div></td>'
                                 ;
+
+                            rend =  '<td class="value"><div class="_card-body"><div><span>' +
+                                parseFloat(($('.value', $('.cotacao', data.resumo))[0].outerText.replace("R$ ", "").replace(",", ".") * 
+                                list[2].replace("%", "").replace(",", ".") / 100 / 12) / 
+                                $('.value', $('.cotacao', data.resumo))[0].outerText.replace("R$ ", "").replace(",", ".")).toFixed(8) +
+                                '</span></div></div></td>'
+                                ;
+
                         }
 
                         if (list[0].trim() == "DÍVIDA LÍQUIDA / EBIT") {
